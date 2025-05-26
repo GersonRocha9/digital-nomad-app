@@ -1,16 +1,12 @@
-import { Button, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 
-import { router } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 
 export default function HomeScreen() {
+  const router = useRouter()
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <View style={styles.container}>
       <Text>HomeScreen</Text>
 
       <Button
@@ -19,6 +15,30 @@ export default function HomeScreen() {
           router.push('/details')
         }}
       />
+
+      <Link href="/city-details/4" asChild>
+        <Text>Go To City Details</Text>
+      </Link>
+
+      <Link
+        href={{
+          pathname: '/city-details/[id]',
+          params: {
+            id: 10,
+            name: 'Gerson Rocha',
+          },
+        }}
+      >
+        <Text>Passando params para a tela de city details</Text>
+      </Link>
     </View>
   )
 }
+
+export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+})
