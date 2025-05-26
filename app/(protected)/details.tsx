@@ -1,15 +1,10 @@
-import { Text, View } from 'react-native'
+import { Box } from '@/src/components/box'
+import { Text } from '@/src/components/text'
 
 export default function DetailsScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <Box flex={1} justifyContent="center" alignItems="center">
       <Text>Details</Text>
-    </View>
+    </Box>
   )
 }

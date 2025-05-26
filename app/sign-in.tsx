@@ -1,17 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Box } from '@/src/components/box'
+import { Text } from '@/src/components/text'
 
 export default function SignInScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Sign In</Text>
-    </View>
+    <Box flex={1} alignItems="center" justifyContent="center">
+      <Text>Sign Up</Text>
+    </Box>
   )
 }
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})

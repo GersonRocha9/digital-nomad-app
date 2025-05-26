@@ -1,44 +1,15 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
-
-import { Link, useRouter } from 'expo-router'
+import { Box } from '@/src/components/box'
+import { Text } from '@/src/components/text'
+import { useAppTheme } from '@/src/components/theme/useAppTheme'
 
 export default function HomeScreen() {
-  const router = useRouter()
+  const { colors } = useAppTheme()
 
   return (
-    <View style={styles.container}>
-      <Text>HomeScreen</Text>
-
-      <Button
-        title="Go to details"
-        onPress={() => {
-          router.push('/details')
-        }}
-      />
-
-      <Link href="/city-details/4" asChild>
-        <Text>Go To City Details</Text>
-      </Link>
-
-      <Link
-        href={{
-          pathname: '/city-details/[id]',
-          params: {
-            id: 10,
-            name: 'Gerson Rocha',
-          },
-        }}
-      >
-        <Text>Passando params para a tela de city details</Text>
-      </Link>
-    </View>
+    <Box flex={1} alignItems="center" justifyContent="center" backgroundColor="cardPrimaryBackground">
+      <Text marginTop="xl" color="text">
+        HomeScreen {colors.mainBackground}
+      </Text>
+    </Box>
   )
 }
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})

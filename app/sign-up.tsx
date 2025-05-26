@@ -1,15 +1,10 @@
-import { Text, View } from 'react-native'
+import { Box } from '@/src/components/box'
+import { Text } from '@/src/components/text'
 
 export default function SignUpScreen() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <Box flex={1} alignItems="center" justifyContent="center">
       <Text>Sign Up</Text>
-    </View>
+    </Box>
   )
 }

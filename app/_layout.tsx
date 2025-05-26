@@ -1,8 +1,11 @@
 import React from 'react'
 
+import { ThemeProvider } from '@shopify/restyle'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
+
+import theme from '@/src/components/theme/theme'
 import 'react-native-reanimated'
 
 export default function RootLayout() {
@@ -15,14 +18,14 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Stack>
         <Stack.Screen name="(protected)" options={{ headerShown: false }} />
         <Stack.Screen name="sign-in" options={{ headerShown: false }} />
         <Stack.Screen name="sign-up" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" options={{ headerShown: false }} />
       </Stack>
-      <StatusBar style="auto" />
-    </>
+      <StatusBar style="light" />
+    </ThemeProvider>
   )
 }
