@@ -10,7 +10,7 @@ interface ICityCardProps {
 
 export function CityCard({ cityPreview }: ICityCardProps) {
   return (
-    <ImageBackground source={cityPreview.coverImage} style={{ width: '100%', height: 280 }}>
+    <ImageBackground source={cityPreview.coverImage} style={{ width: 200, height: 200 }}>
       <Text>{cityPreview.name}</Text>
 
       <Text>{cityPreview.country}</Text>
