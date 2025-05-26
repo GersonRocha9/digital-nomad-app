@@ -1,10 +1,10 @@
-import { Box } from '@/src/components/box'
+import { Screen } from '@/src/components/screen'
 import { Text } from '@/src/components/text'
 
 export default function TabTwoScreen() {
   return (
-    <Box flex={1} justifyContent="center" alignItems="center">
+    <Screen>
       <Text>Explore</Text>
-    </Box>
+    </Screen>
   )
 }
