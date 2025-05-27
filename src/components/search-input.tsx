@@ -6,14 +6,24 @@ import { Box, type BoxProps } from './box'
 import { IconButton } from './icon-button'
 import { useAppTheme } from './theme/useAppTheme'
 
-type SearchInputProps = {} & Pick<TextInputProps, 'value' | 'onChangeText' | 'placeholder'>
+type SearchInputProps = {} & Pick<
+  TextInputProps,
+  'value' | 'onChangeText' | 'placeholder'
+>
 
-export function SearchInput({ value, onChangeText, placeholder }: SearchInputProps) {
+export function SearchInput({
+  value,
+  onChangeText,
+  placeholder,
+}: SearchInputProps) {
   const { colors, textVariants } = useAppTheme()
   const [isFocused, setIsFocused] = useState(false)
 
   return (
-    <Box {...boxStyle} style={{ borderColor: isFocused ? colors.primary : colors.gray1 }}>
+    <Box
+      {...boxStyle}
+      style={{ borderColor: isFocused ? colors.primary : colors.gray1 }}
+    >
       <TextInput
         value={value}
         onChangeText={onChangeText}
