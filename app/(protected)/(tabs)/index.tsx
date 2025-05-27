@@ -25,7 +25,10 @@ export default function HomeScreen() {
     null,
   )
 
-  const { cityPreviewList } = useCities(debouncedCityName, selectedCategoryId)
+  const { cityPreviewList } = useCities({
+    cityName: debouncedCityName,
+    categoryId: selectedCategoryId,
+  })
 
   const flatListRef = useRef(null)
   useScrollToTop(flatListRef)
