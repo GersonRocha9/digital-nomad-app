@@ -29,6 +29,7 @@ export default function RootLayout() {
     PoppinsSemiBoldItalic: require('../assets/fonts/Poppins-SemiBoldItalic.ttf'),
     PoppinsThin: require('../assets/fonts/Poppins-Thin.ttf'),
     PoppinsThinItalic: require('../assets/fonts/Poppins-ThinItalic.ttf'),
+    IcoMoon: require('../assets/icons/icomoon.ttf'),
   })
 
   if (!loaded) {

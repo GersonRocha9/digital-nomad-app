@@ -1,6 +1,7 @@
-import { FlatList, Text as RNText, type ListRenderItemInfo } from 'react-native'
+import { FlatList, type ListRenderItemInfo } from 'react-native'
 
 import { CityCard } from '@/src/components/city-card'
+import { Icon } from '@/src/components/icon'
 import { Screen } from '@/src/components/screen'
 import { Text } from '@/src/components/text'
 import { cityPreviewList } from '@/src/data/cities'
@@ -15,15 +16,11 @@ export default function HomeScreen() {
     <Screen marginTop="s56">
       <Text variant="title28">Madrid</Text>
 
-      <RNText
-        style={{
-          color: '#FFF',
-          fontSize: 28,
-        }}
-      >
-        Madrid
-      </RNText>
-      <FlatList data={cityPreviewList} renderItem={renderItem} />
+      <Icon name="Adventure" color="primary" size={50} />
+      <Icon name="Beach" />
+      <Icon name="Person-fill" />
+      <Icon name="Person-outline" />
+      <FlatList data={cityPreviewList} renderItem={renderItem} showsVerticalScrollIndicator={false} />
     </Screen>
   )
 }
