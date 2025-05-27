@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 import { FlatList, type ListRenderItemInfo } from 'react-native'
 
@@ -11,12 +11,19 @@ import { Screen } from '@/src/components/screen'
 import { useAppTheme } from '@/src/components/theme/useAppTheme'
 import { CityFilter } from '@/src/containers/city-filter'
 import { categories } from '@/src/data/categories'
-import { cityPreviewList } from '@/src/data/cities'
+import { useCities } from '@/src/data/useCities'
 import type { CityPreview } from '@/src/types'
 
 export default function HomeScreen() {
   const { spacing } = useAppTheme()
   const { top } = useSafeAreaInsets()
+
+  const [cityName, setCityName] = useState('')
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    null,
+  )
+
+  const { cityPreviewList } = useCities(cityName, selectedCategoryId)
 
   const flatListRef = useRef(null)
   useScrollToTop(flatListRef)
@@ -42,7 +49,15 @@ export default function HomeScreen() {
           paddingBottom: spacing.padding,
         }}
         ref={flatListRef}
-        ListHeaderComponent={<CityFilter categories={categories} />}
+        ListHeaderComponent={
+          <CityFilter
+            categories={categories}
+            cityName={cityName}
+            onChangeCityName={setCityName}
+            selectedCategoryId={selectedCategoryId}
+            onChangeSelectedCityCategoryId={setSelectedCategoryId}
+          />
+        }
       />
     </Screen>
   )

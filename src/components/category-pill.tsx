@@ -5,7 +5,7 @@ import type { IconName } from './icon'
 
 type ICategoryPillProps = {
   category: ICategory
-} & Pick<IPillProps, 'active'>
+} & Pick<IPillProps, 'active' | 'onPress'>
 
 export function CategoryPill({ category, ...pillProps }: ICategoryPillProps) {
   return (

@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { ScrollView } from 'react-native'
 
 import { Box } from '../components/box'
@@ -10,20 +8,25 @@ import type { ICategory } from '../types'
 
 interface ICityFilterProps {
   categories: ICategory[]
+  cityName: string
+  onChangeCityName: (cityName: string) => void
+  selectedCategoryId: string | null
+  onChangeSelectedCityCategoryId: (id: string | null) => void
 }
 
-export function CityFilter({ categories }: ICityFilterProps) {
-  const [cityName, setCityName] = useState('')
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
-    null,
-  )
-
+export function CityFilter({
+  categories,
+  cityName,
+  onChangeCityName,
+  selectedCategoryId,
+  onChangeSelectedCityCategoryId,
+}: ICityFilterProps) {
   return (
     <Box>
       <Box paddingHorizontal="padding">
         <SearchInput
           value={cityName}
-          onChangeText={setCityName}
+          onChangeText={onChangeCityName}
           placeholder="Qual seu próximo destino?"
         />
       </Box>
@@ -35,6 +38,7 @@ export function CityFilter({ categories }: ICityFilterProps) {
               key={category.id}
               active={category.id === selectedCategoryId}
               category={category}
+              onPress={() => onChangeSelectedCityCategoryId(category.id)}
             />
           ))}
         </Box>
