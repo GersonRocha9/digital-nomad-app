@@ -36,7 +36,8 @@ export function SearchInput({ value, onChangeText, placeholder }: SearchInputPro
 
 const boxStyle: BoxProps = {
   flexDirection: 'row',
-  padding: 's16',
+  padding: 's8',
+  paddingLeft: 's16',
   justifyContent: 'space-between',
   backgroundColor: 'gray1',
   height: 70,
