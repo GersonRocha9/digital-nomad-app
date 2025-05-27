@@ -32,7 +32,10 @@ export default function TabLayout() {
         options={{
           title: 'Início',
           tabBarIcon: ({ focused }) => (
-            <Icon name={focused ? 'Home-fill' : 'Home-outline'} color={focused ? 'primary' : 'gray2'} />
+            <Icon
+              name={focused ? 'Home-fill' : 'Home-outline'}
+              color={focused ? 'primary' : 'gray2'}
+            />
           ),
         }}
       />
@@ -41,7 +44,9 @@ export default function TabLayout() {
         name="explore"
         options={{
           title: 'Explorar',
-          tabBarIcon: ({ focused }) => <Icon name="Explore" color={focused ? 'primary' : 'gray2'} />,
+          tabBarIcon: ({ focused }) => (
+            <Icon name="Explore" color={focused ? 'primary' : 'gray2'} />
+          ),
         }}
       />
 
@@ -50,7 +55,10 @@ export default function TabLayout() {
         options={{
           title: 'Perfil',
           tabBarIcon: ({ focused }) => (
-            <Icon name={focused ? 'Person-fill' : 'Person-outline'} color={focused ? 'primary' : 'gray2'} />
+            <Icon
+              name={focused ? 'Person-fill' : 'Person-outline'}
+              color={focused ? 'primary' : 'gray2'}
+            />
           ),
         }}
       />
