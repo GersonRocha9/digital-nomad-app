@@ -12,6 +12,7 @@ import { useAppTheme } from '@/src/components/theme/useAppTheme'
 import { CityFilter } from '@/src/containers/city-filter'
 import { categories } from '@/src/data/categories'
 import { useCities } from '@/src/data/useCities'
+import { useDebounce } from '@/src/hooks/useDebounce'
 import type { CityPreview } from '@/src/types'
 
 export default function HomeScreen() {
@@ -19,11 +20,12 @@ export default function HomeScreen() {
   const { top } = useSafeAreaInsets()
 
   const [cityName, setCityName] = useState('')
+  const debouncedCityName = useDebounce(cityName)
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
     null,
   )
 
-  const { cityPreviewList } = useCities(cityName, selectedCategoryId)
+  const { cityPreviewList } = useCities(debouncedCityName, selectedCategoryId)
 
   const flatListRef = useRef(null)
   useScrollToTop(flatListRef)
