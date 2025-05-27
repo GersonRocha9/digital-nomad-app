@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { FlatList, type ListRenderItemInfo } from 'react-native'
 
 import { useScrollToTop } from '@react-navigation/native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { CityCard } from '@/src/components/city-card'
 import { Screen } from '@/src/components/screen'
@@ -12,6 +13,8 @@ import type { CityPreview } from '@/src/types'
 
 export default function HomeScreen() {
   const { spacing } = useAppTheme()
+  const { top } = useSafeAreaInsets()
+
   const flatListRef = useRef(null)
   useScrollToTop(flatListRef)
 
@@ -26,7 +29,7 @@ export default function HomeScreen() {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ gap: spacing.padding }}
+        contentContainerStyle={{ gap: spacing.padding, paddingTop: top, paddingBottom: spacing.padding }}
         ref={flatListRef}
       />
     </Screen>
