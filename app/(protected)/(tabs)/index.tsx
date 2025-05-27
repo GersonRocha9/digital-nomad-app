@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { CityCard } from '@/src/components/city-card'
 import { Screen } from '@/src/components/screen'
 import { useAppTheme } from '@/src/components/theme/useAppTheme'
+import { CityFilter } from '@/src/containers/city-filter'
 import { cityPreviewList } from '@/src/data/cities'
 import type { CityPreview } from '@/src/types'
 
@@ -31,6 +32,7 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ gap: spacing.padding, paddingTop: top, paddingBottom: spacing.padding }}
         ref={flatListRef}
+        ListHeaderComponent={<CityFilter />}
       />
     </Screen>
   )
