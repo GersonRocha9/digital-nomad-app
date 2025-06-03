@@ -26,7 +26,7 @@ export function CityDetailsHeader({
         source={coverImage}
         style={{
           width: '100%',
-          height: 250,
+          height: 400,
         }}
         imageStyle={{
           borderBottomRightRadius: 40,
