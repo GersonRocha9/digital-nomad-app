@@ -11,6 +11,8 @@ export interface IPillProps {
   onPress?: PressableProps['onPress']
 }
 
+export const PILL_HEIGHT = 16 + 16 + 2 + 2
+
 export function Pill({ label, iconName, active, onPress }: IPillProps) {
   return (
     <Pressable onPress={onPress}>
