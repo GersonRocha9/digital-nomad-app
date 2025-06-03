@@ -28,7 +28,12 @@ export default function CityDetailsScreen() {
         coverImage={city.coverImage}
         categories={city.categories}
       />
-      <CityDetailsInfo />
+
+      <CityDetailsInfo
+        name={city.name}
+        country={city.country}
+        description={city.description}
+      />
       <CityDetailsTouristAttractions />
       <CityDetailsMaps />
       <CityDetailsRelatedCities />
