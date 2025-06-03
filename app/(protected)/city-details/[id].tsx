@@ -1,5 +1,6 @@
 import { useLocalSearchParams } from 'expo-router'
 
+import { Divider } from '@/src/components/divider'
 import { Screen } from '@/src/components/screen'
 import { Text } from '@/src/components/text'
 import { CityDetailsHeader } from '@/src/containers/city-details-header'
@@ -34,6 +35,9 @@ export default function CityDetailsScreen() {
         country={city.country}
         description={city.description}
       />
+
+      <Divider paddingHorizontal="padding" />
+
       <CityDetailsTouristAttractions />
       <CityDetailsMaps />
       <CityDetailsRelatedCities />
