@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react'
 
-import { FlatList, type ListRenderItemInfo } from 'react-native'
+import { type ListRenderItemInfo } from 'react-native'
 
 import { useScrollToTop } from '@react-navigation/native'
+import Animated, { FadingTransition } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { Box } from '@/src/components/box'
@@ -43,7 +44,7 @@ export default function HomeScreen() {
 
   return (
     <Screen style={{ paddingHorizontal: 0 }}>
-      <FlatList
+      <Animated.FlatList
         data={cityPreviewList}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
@@ -54,6 +55,7 @@ export default function HomeScreen() {
           paddingBottom: spacing.padding,
         }}
         ref={flatListRef}
+        itemLayoutAnimation={FadingTransition.duration(500)}
         ListHeaderComponent={
           <CityFilter
             categories={categories}
