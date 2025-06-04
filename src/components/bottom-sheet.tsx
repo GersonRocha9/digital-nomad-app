@@ -6,6 +6,7 @@ import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
+  withDelay,
   withTiming,
   type SharedValue,
 } from 'react-native-reanimated'
@@ -37,7 +38,8 @@ export function BottomSheet({
   }))
 
   const backdropAnimatedStyle = useAnimatedStyle(() => ({
-    zIndex: isOpen.value ? 1 : -1,
+    opacity: 1 - progress.value,
+    zIndex: isOpen ? 1 : withDelay(duration, withTiming(-1, { duration: 0 })),
   }))
 
   return (
