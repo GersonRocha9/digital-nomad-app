@@ -44,7 +44,7 @@ export default function CityDetailsScreen() {
 
       <Divider paddingHorizontal="padding" />
 
-      <CityDetailsMaps />
+      <CityDetailsMaps location={city.location} />
 
       <Divider paddingHorizontal="padding" />
 
