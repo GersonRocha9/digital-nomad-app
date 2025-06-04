@@ -1,6 +1,11 @@
-import { useState } from 'react'
-
 import { Pressable, StyleSheet, View } from 'react-native'
+
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  type SharedValue,
+} from 'react-native-reanimated'
 
 import { Box } from './box'
 import { Icon } from './icon'
@@ -13,34 +18,71 @@ interface IAccordionProps {
 }
 
 export function Accordion({ title, description }: IAccordionProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const isOpen = useSharedValue(false)
+
+  function handleToggleAccordion() {
+    isOpen.value = !isOpen.value
+  }
 
   return (
-    <Pressable onPress={() => setIsOpen(!isOpen)}>
+    <Pressable onPress={handleToggleAccordion}>
       <View>
-        <AccordionHeader title={title} />
-        {isOpen && <AccordionBody description={description} />}
+        <AccordionHeader title={title} isOpen={isOpen} />
+        <AccordionBody description={description} isOpen={isOpen} />
       </View>
     </Pressable>
   )
 }
 
-export function AccordionHeader({ title }: { title: string }) {
+export function AccordionHeader({
+  title,
+  isOpen,
+}: {
+  title: string
+  isOpen: SharedValue<boolean>
+}) {
   return (
     <View style={styles.header}>
       <Box flexShrink={1}>
         <Text variant="title16">{title}</Text>
       </Box>
-      <Icon name="Chevron-down" color="gray2" />
+
+      <Icon
+        name={isOpen ? 'Chevron-up' : 'Chevron-down'}
+        color={isOpen ? 'fieryRed' : 'gray2'}
+      />
     </View>
   )
 }
 
-export function AccordionBody({ description }: { description: string }) {
+export function AccordionBody({
+  description,
+  isOpen,
+}: {
+  description: string
+  isOpen: SharedValue<boolean>
+}) {
+  const height = useSharedValue(0)
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      height: isOpen.value
+        ? withTiming(height.value, { duration: 500 })
+        : withTiming(0, { duration: 500 }),
+    }
+  })
+
   return (
-    <View style={styles.body}>
-      <Text>{description}</Text>
-    </View>
+    <Animated.View style={[animatedStyles, { overflow: 'hidden' }]}>
+      <View
+        style={styles.body}
+        onLayout={(event) => {
+          height.value = event.nativeEvent.layout.height
+        }}
+      >
+        <Text>{description}</Text>
+      </View>
+    </Animated.View>
   )
 }
 
@@ -55,6 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadii.default,
   },
   body: {
+    position: 'absolute',
     paddingHorizontal: 16,
     paddingBottom: 16,
     backgroundColor: theme.colors.gray2,
