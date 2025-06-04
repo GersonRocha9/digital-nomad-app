@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, View } from 'react-native'
 
 import Animated, {
+  interpolate,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -19,15 +20,17 @@ interface IAccordionProps {
 
 export function Accordion({ title, description }: IAccordionProps) {
   const isOpen = useSharedValue(false)
+  const progress = useSharedValue(0)
 
   function handleToggleAccordion() {
     isOpen.value = !isOpen.value
+    progress.value = withTiming(isOpen.value ? 0 : 1, { duration: 500 })
   }
 
   return (
     <Pressable onPress={handleToggleAccordion}>
       <View>
-        <AccordionHeader title={title} isOpen={isOpen} />
+        <AccordionHeader title={title} progress={progress} />
         <AccordionBody description={description} isOpen={isOpen} />
       </View>
     </Pressable>
@@ -36,21 +39,28 @@ export function Accordion({ title, description }: IAccordionProps) {
 
 export function AccordionHeader({
   title,
-  isOpen,
+  progress,
 }: {
   title: string
-  isOpen: SharedValue<boolean>
+  progress: SharedValue<number>
 }) {
+  const iconAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        rotate: interpolate(progress.value, [0, 1], [0, -180]) + 'deg',
+      },
+    ],
+  }))
+
   return (
     <View style={styles.header}>
       <Box flexShrink={1}>
         <Text variant="title16">{title}</Text>
       </Box>
 
-      <Icon
-        name={isOpen ? 'Chevron-up' : 'Chevron-down'}
-        color={isOpen ? 'fieryRed' : 'gray2'}
-      />
+      <Animated.View style={iconAnimatedStyle}>
+        <Icon name="Chevron-down" color="gray2" />
+      </Animated.View>
     </View>
   )
 }
@@ -64,13 +74,11 @@ export function AccordionBody({
 }) {
   const height = useSharedValue(0)
 
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      height: isOpen.value
-        ? withTiming(height.value, { duration: 500 })
-        : withTiming(0, { duration: 500 }),
-    }
-  })
+  const animatedStyles = useAnimatedStyle(() => ({
+    height: isOpen.value
+      ? withTiming(height.value, { duration: 500 })
+      : withTiming(0, { duration: 500 }),
+  }))
 
   return (
     <Animated.View style={[animatedStyles, { overflow: 'hidden' }]}>
