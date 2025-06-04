@@ -1,10 +1,48 @@
-import { Box } from '../components/box'
-import { Text } from '../components/text'
+import { ScrollView, useWindowDimensions } from 'react-native'
 
-export function CityDetailsRelatedCities() {
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+import { Box } from '../components/box'
+import { CityCard } from '../components/city-card'
+import { Text } from '../components/text'
+import { useAppTheme } from '../components/theme/useAppTheme'
+import { useRelatedCities } from '../data/useRelatedCities'
+
+import type { ICity } from '../types'
+
+type Props = Pick<ICity, 'relatedCitiesIds'>
+
+export function CityDetailsRelatedCities({ relatedCitiesIds }: Props) {
+  const cities = useRelatedCities(relatedCitiesIds)
+  const { spacing } = useAppTheme()
+  const { bottom } = useSafeAreaInsets()
+  const { width } = useWindowDimensions()
+
+  const cardWidth = width * 0.7
+  const cardHeight = cardWidth * 0.9
+
   return (
-    <Box padding="padding">
-      <Text>City Details Related Cities</Text>
+    <Box style={{ paddingBottom: bottom }}>
+      <Text variant="title22" mb="s16" paddingHorizontal="padding">
+        Veja também
+      </Text>
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator
+        contentContainerStyle={{
+          gap: spacing.padding,
+          paddingHorizontal: spacing.padding,
+        }}
+      >
+        {cities.map((city) => (
+          <CityCard
+            key={city.id}
+            cityPreview={city}
+            style={{ width: cardWidth, height: cardHeight }}
+          />
+        ))}
+      </ScrollView>
     </Box>
   )
 }
