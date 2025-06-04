@@ -42,7 +42,12 @@ export default function CityDetailsScreen() {
         touristAttractions={city.touristAttractions}
       />
 
+      <Divider paddingHorizontal="padding" />
+
       <CityDetailsMaps />
+
+      <Divider paddingHorizontal="padding" />
+
       <CityDetailsRelatedCities />
     </Screen>
   )

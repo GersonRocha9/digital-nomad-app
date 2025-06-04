@@ -9,7 +9,9 @@ type Props = Pick<ICity, 'touristAttractions'>
 export function CityDetailsTouristAttractions({ touristAttractions }: Props) {
   return (
     <Box padding="padding">
-      <Text variant="title22">Pontos turísticos</Text>
+      <Text variant="title22" mb="s8">
+        Pontos turísticos
+      </Text>
 
       <Box gap="s8">
         {touristAttractions.map((attraction) => (
