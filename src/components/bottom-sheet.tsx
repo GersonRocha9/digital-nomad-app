@@ -11,7 +11,7 @@ import Animated, {
   type SharedValue,
 } from 'react-native-reanimated'
 
-interface IBottomSheetProps {
+export interface IBottomSheetProps {
   onPress: VoidFunction
   isOpen: SharedValue<boolean>
   duration?: number
