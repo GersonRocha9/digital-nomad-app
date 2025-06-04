@@ -23,7 +23,7 @@ export function CityCard({ cityPreview, style }: ICityCardProps) {
   const { borderRadii } = useAppTheme()
 
   return (
-    <Link href={`/city-details/${cityPreview.id}`} asChild>
+    <Link href={`/city-details/${cityPreview.id}`} push asChild>
       <Pressable>
         <ImageBackground
           source={cityPreview.coverImage}
