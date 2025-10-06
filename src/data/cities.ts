@@ -2,7 +2,7 @@ import { categories } from './categories'
 
 import type { CityPreview, ICity } from '../types'
 
-export const cities: ICity[] = [
+export const cities: (ICity & { relatedCitiesIds: string[] })[] = [
   {
     id: 'rio-de-janeiro',
     name: 'Rio de Janeiro',
@@ -59,25 +59,29 @@ export const cities: ICity[] = [
       {
         id: 'tokyo1',
         name: 'Templo Senso-ji',
-        description: 'O templo mais antigo de Tóquio e um local de grande importância espiritual.',
+        description:
+          'O templo mais antigo de Tóquio e um local de grande importância espiritual.',
         cityId: 'tokyo',
       },
       {
         id: 'tokyo2',
         name: 'Torre de Tóquio',
-        description: 'Um dos ícones da cidade, com vistas panorâmicas incríveis.',
+        description:
+          'Um dos ícones da cidade, com vistas panorâmicas incríveis.',
         cityId: 'tokyo',
       },
       {
         id: 'tokyo3',
         name: 'Shibuya Crossing',
-        description: 'A famosa interseção movimentada, conhecida em todo o mundo.',
+        description:
+          'A famosa interseção movimentada, conhecida em todo o mundo.',
         cityId: 'tokyo',
       },
       {
         id: 'tokyo4',
         name: 'Parque Ueno',
-        description: 'Um amplo parque com museus, templos e cerejeiras em flor na primavera.',
+        description:
+          'Um amplo parque com museus, templos e cerejeiras em flor na primavera.',
         cityId: 'tokyo',
       },
     ],
@@ -94,7 +98,13 @@ export const cities: ICity[] = [
     coverImage: require('./images/bangkok.jpg'),
     description:
       'Bangkok, a capital vibrante da Tailândia, é uma cidade que mistura tradição e modernidade. Famosa por seus templos históricos, mercados de rua movimentados e arranha-céus imponentes, a cidade é um dos destinos turísticos mais dinâmicos do Sudeste Asiático.',
-    categories: [categories[0], categories[4], categories[1], categories[6], categories[5]], // Cultura, História, Compras
+    categories: [
+      categories[0],
+      categories[4],
+      categories[1],
+      categories[6],
+      categories[5],
+    ], // Cultura, História, Compras
     touristAttractions: [
       {
         id: 'bangkok1',
@@ -144,25 +154,29 @@ export const cities: ICity[] = [
       {
         id: 'barcelona1',
         name: 'Sagrada Família',
-        description: 'Uma das basílicas mais impressionantes do mundo, projetada por Antoni Gaudí.',
+        description:
+          'Uma das basílicas mais impressionantes do mundo, projetada por Antoni Gaudí.',
         cityId: 'barcelona',
       },
       {
         id: 'barcelona2',
         name: 'Parque Güell',
-        description: 'Um parque público cheio de jardins e elementos arquitetônicos projetados por Gaudí.',
+        description:
+          'Um parque público cheio de jardins e elementos arquitetônicos projetados por Gaudí.',
         cityId: 'barcelona',
       },
       {
         id: 'barcelona3',
         name: 'Casa Batlló',
-        description: 'Outro marco arquitetônico de Gaudí, conhecido por sua fachada distinta.',
+        description:
+          'Outro marco arquitetônico de Gaudí, conhecido por sua fachada distinta.',
         cityId: 'barcelona',
       },
       {
         id: 'barcelona4',
         name: 'La Rambla',
-        description: 'Um famoso boulevard no centro de Barcelona, repleto de lojas, restaurantes e entretenimento.',
+        description:
+          'Um famoso boulevard no centro de Barcelona, repleto de lojas, restaurantes e entretenimento.',
         cityId: 'barcelona',
       },
     ],
@@ -184,25 +198,29 @@ export const cities: ICity[] = [
       {
         id: 'newyork1',
         name: 'Estátua da Liberdade',
-        description: 'Um símbolo da liberdade e democracia, situada na entrada do porto de Nova York.',
+        description:
+          'Um símbolo da liberdade e democracia, situada na entrada do porto de Nova York.',
         cityId: 'new_york',
       },
       {
         id: 'newyork2',
         name: 'Central Park',
-        description: 'Um vasto parque no coração de Manhattan, um local perfeito para lazer e atividades ao ar livre.',
+        description:
+          'Um vasto parque no coração de Manhattan, um local perfeito para lazer e atividades ao ar livre.',
         cityId: 'new_york',
       },
       {
         id: 'newyork3',
         name: 'Times Square',
-        description: 'A famosa interseção iluminada por outdoors gigantes e sede de muitos teatros da Broadway.',
+        description:
+          'A famosa interseção iluminada por outdoors gigantes e sede de muitos teatros da Broadway.',
         cityId: 'new_york',
       },
       {
         id: 'newyork4',
         name: 'Empire State Building',
-        description: 'Um dos arranha-céus mais famosos do mundo, oferecendo vistas deslumbrantes de Nova York.',
+        description:
+          'Um dos arranha-céus mais famosos do mundo, oferecendo vistas deslumbrantes de Nova York.',
         cityId: 'new_york',
       },
     ],
@@ -550,7 +568,8 @@ export const cities: ICity[] = [
       {
         id: 'kosice3',
         name: 'Teatro Estatal de Košice',
-        description: 'Um teatro deslumbrante do século XIX, famoso por suas apresentações de ópera, balé e teatro.',
+        description:
+          'Um teatro deslumbrante do século XIX, famoso por suas apresentações de ópera, balé e teatro.',
         cityId: 'kosice',
       },
       {

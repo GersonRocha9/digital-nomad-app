@@ -1,8 +1,7 @@
 import { supabase } from './supabase'
+import { storageURL, supabaseAdapter } from './supabaseAdapter'
 
-import type { CategoryCode, CityPreview, ICategory } from '../types'
-
-const storageUrl = process.env.EXPO_PUBLIC_SUPABASE_STORAGE_URL
+import type { CategoryCode, CityPreview, ICategory, ICity } from '../types'
 
 export interface ICityFilters {
   name?: string
@@ -28,7 +27,7 @@ async function findAll(filters: ICityFilters): Promise<CityPreview[]> {
         id: row.id || '',
         name: row.name,
         country: row.country,
-        coverImage: `${storageUrl}/${row.cover_image}`,
+        coverImage: `${storageURL}/${row.cover_image}`,
       })) || []) as CityPreview[]
     }
 
@@ -42,7 +41,7 @@ async function findAll(filters: ICityFilters): Promise<CityPreview[]> {
         id: row.id,
         name: row.name,
         country: row.country,
-        coverImage: `${storageUrl}/${row.cover_image}`,
+        coverImage: `${storageURL}/${row.cover_image}`,
       })) || []
     )
   } catch (error) {
@@ -66,7 +65,22 @@ async function listCategories(): Promise<ICategory[]> {
   }))
 }
 
+async function findById(id: string): Promise<ICity> {
+  const { data, error } = await supabase
+    .from('cities_with_full_info')
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (error) {
+    throw new Error('city not found')
+  }
+
+  return supabaseAdapter.toCity(data)
+}
+
 export const supabaseService = {
   findAll,
   listCategories,
+  findById,
 }

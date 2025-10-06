@@ -10,10 +10,10 @@ import { useRelatedCities } from '../data/useRelatedCities'
 
 import type { ICity } from '../types'
 
-type Props = Pick<ICity, 'relatedCitiesIds'>
+type Props = Pick<ICity, 'id'>
 
-export function CityDetailsRelatedCities({ relatedCitiesIds }: Props) {
-  const cities = useRelatedCities(relatedCitiesIds)
+export function CityDetailsRelatedCities({ id }: Props) {
+  const cities = useRelatedCities(id)
   const { spacing } = useAppTheme()
   const { bottom } = useSafeAreaInsets()
   const { width } = useWindowDimensions()

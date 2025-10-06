@@ -36,7 +36,7 @@ export interface ICity {
     longitude: number
   }
   categories: ICategory[]
-  relatedCitiesIds: string[]
+  // relatedCitiesIds: string[]
 }
 
 export type CityPreview = Pick<ICity, 'id' | 'name' | 'country' | 'coverImage'>
