@@ -1,3 +1,5 @@
+import { supabaseService } from '../supabase/supabaseService'
+
 import { cities } from './cities'
 
 import type { CityPreview } from '../types'
@@ -10,6 +12,7 @@ interface ICityFilter {
 export function useCities({ cityName, categoryId }: ICityFilter): {
   cityPreviewList: CityPreview[]
 } {
+  supabaseService.findAll()
   let cityPreviewList = [...cities]
 
   if (cityName) {
