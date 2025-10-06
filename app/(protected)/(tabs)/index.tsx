@@ -11,7 +11,7 @@ import { CityCard } from '@/src/components/city-card'
 import { Screen } from '@/src/components/screen'
 import { useAppTheme } from '@/src/components/theme/useAppTheme'
 import { CityFilter } from '@/src/containers/city-filter'
-import { categories } from '@/src/data/categories'
+import { useCategories } from '@/src/data/useCategories'
 import { useCities } from '@/src/data/useCities'
 import { useDebounce } from '@/src/hooks/useDebounce'
 import type { CityPreview } from '@/src/types'
@@ -30,6 +30,8 @@ export default function HomeScreen() {
     name: debouncedCityName,
     categoryId: selectedCategoryId,
   })
+
+  const { categories } = useCategories()
 
   const flatListRef = useRef(null)
   useScrollToTop(flatListRef)
@@ -58,7 +60,7 @@ export default function HomeScreen() {
         itemLayoutAnimation={FadingTransition.duration(500)}
         ListHeaderComponent={
           <CityFilter
-            categories={categories}
+            categories={categories || []}
             cityName={cityName}
             onChangeCityName={setCityName}
             selectedCategoryId={selectedCategoryId}
