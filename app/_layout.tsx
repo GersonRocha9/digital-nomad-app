@@ -8,6 +8,10 @@ import { StatusBar } from 'expo-status-bar'
 import theme from '@/src/components/theme/theme'
 import 'react-native-reanimated'
 
+if (__DEV__) {
+  require('../ReactotronConfig')
+}
+
 export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
