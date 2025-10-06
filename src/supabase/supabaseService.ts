@@ -4,9 +4,18 @@ import type { CityPreview } from '../types'
 
 const storageUrl = process.env.EXPO_PUBLIC_SUPABASE_STORAGE_URL
 
-async function findAll(): Promise<CityPreview[]> {
+export interface ICityFilters {
+  name?: string
+  categoryId?: string | null
+}
+
+async function findAll(filters: ICityFilters): Promise<CityPreview[]> {
   try {
-    const { data } = await supabase.from('cities').select('*').limit(10)
+    console.log('filters', filters)
+    const { data } = await supabase
+      .from('cities')
+      .select('*')
+      .ilike('name', `%${filters.name}%`)
 
     return (
       data?.map((row) => ({

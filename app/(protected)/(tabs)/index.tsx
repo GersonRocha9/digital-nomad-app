@@ -27,7 +27,7 @@ export default function HomeScreen() {
   )
 
   const { cities } = useCities({
-    cityName: debouncedCityName,
+    name: debouncedCityName,
     categoryId: selectedCategoryId,
   })
 
