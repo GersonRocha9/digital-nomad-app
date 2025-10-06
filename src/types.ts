@@ -28,7 +28,7 @@ export interface ICity {
   id: string
   name: string
   country: string
-  coverImage: number
+  coverImage: string
   description: string
   touristAttractions: ITouristAttraction[]
   location: {

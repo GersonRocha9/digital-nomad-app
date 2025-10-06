@@ -26,7 +26,7 @@ export default function HomeScreen() {
     null,
   )
 
-  const { cityPreviewList } = useCities({
+  const { cities } = useCities({
     cityName: debouncedCityName,
     categoryId: selectedCategoryId,
   })
@@ -45,7 +45,7 @@ export default function HomeScreen() {
   return (
     <Screen style={{ paddingHorizontal: 0 }}>
       <Animated.FlatList
-        data={cityPreviewList}
+        data={cities}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}

@@ -1,6 +1,6 @@
-import { supabaseService } from '../supabase/supabaseService'
+import { useEffect, useState } from 'react'
 
-import { cities } from './cities'
+import { supabaseService } from '../supabase/supabaseService'
 
 import type { CityPreview } from '../types'
 
@@ -9,23 +9,35 @@ interface ICityFilter {
   categoryId?: string | null
 }
 
-export function useCities({ cityName, categoryId }: ICityFilter): {
-  cityPreviewList: CityPreview[]
-} {
-  supabaseService.findAll()
-  let cityPreviewList = [...cities]
+interface IUseCitiesReturn {
+  cities?: CityPreview[]
+  isLoading: boolean
+  error: unknown
+}
 
-  if (cityName) {
-    cityPreviewList = cityPreviewList.filter((city) => {
-      return city.name.toLowerCase().includes(cityName.toLowerCase())
-    })
+export function useCities({
+  cityName,
+  categoryId,
+}: ICityFilter): IUseCitiesReturn {
+  const [cities, setCities] = useState<CityPreview[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<unknown>(null)
+
+  async function fetchCities() {
+    try {
+      setIsLoading(true)
+      const cities = await supabaseService.findAll()
+      setCities(cities)
+    } catch (error) {
+      setError(error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
-  if (categoryId) {
-    cityPreviewList = cityPreviewList.filter((city) => {
-      return city.categories.some((category) => category.id === categoryId)
-    })
-  }
+  useEffect(() => {
+    fetchCities()
+  }, [])
 
-  return { cityPreviewList }
+  return { cities, isLoading, error }
 }

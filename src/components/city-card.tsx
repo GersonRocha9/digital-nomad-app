@@ -26,7 +26,7 @@ export function CityCard({ cityPreview, style }: ICityCardProps) {
     <Link href={`/city-details/${cityPreview.id}`} push asChild>
       <Pressable>
         <ImageBackground
-          source={cityPreview.coverImage}
+          source={{ uri: cityPreview.coverImage }}
           style={[{ width: '100%', height: 280 }, style]}
           imageStyle={{ borderRadius: borderRadii.default }}
         >
