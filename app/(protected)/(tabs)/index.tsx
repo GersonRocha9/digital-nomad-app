@@ -60,7 +60,7 @@ export default function HomeScreen() {
         itemLayoutAnimation={FadingTransition.duration(500)}
         ListHeaderComponent={
           <CityFilter
-            categories={categories || []}
+            categories={categories}
             cityName={cityName}
             onChangeCityName={setCityName}
             selectedCategoryId={selectedCategoryId}

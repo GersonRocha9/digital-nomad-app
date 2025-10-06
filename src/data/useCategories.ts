@@ -5,7 +5,7 @@ import { supabaseService } from '../supabase/supabaseService'
 import type { ICategory } from '../types'
 
 interface IUseCategoriesReturn {
-  categories?: ICategory[]
+  categories: ICategory[]
   isLoading: boolean
   error: unknown
 }
