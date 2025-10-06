@@ -13,31 +13,26 @@ async function findAll(filters: ICityFilters): Promise<CityPreview[]> {
     const fields = 'id, name, country, cover_image'
 
     if (filters.categoryId) {
-      const { data } = await supabase
+      const { data: cities } = await supabase
         .from('cities_with_categories')
         .select(fields)
         .eq('category_id', filters.categoryId)
         .ilike('name', `%${filters.name}%`)
 
-      if (!data) {
+      if (!cities) {
         throw new Error('No data found')
       }
 
-      return (data.map((row) => ({
-        id: row.id || '',
-        name: row.name,
-        country: row.country,
-        coverImage: `${storageURL}/${row.cover_image}`,
-      })) || []) as CityPreview[]
+      return cities?.map(supabaseAdapter.toCityPreview)
     }
 
-    const { data } = await supabase
+    const { data: cities } = await supabase
       .from('cities')
       .select(fields)
       .ilike('name', `%${filters.name}%`)
 
     return (
-      data?.map((row) => ({
+      cities?.map((row) => ({
         id: row.id,
         name: row.name,
         country: row.country,
@@ -79,8 +74,19 @@ async function findById(id: string): Promise<ICity> {
   return supabaseAdapter.toCity(data)
 }
 
+async function getRelatedCities(cityId: string): Promise<CityPreview[]> {
+  const { data } = await supabase
+    .from('related_cities')
+    .select('*')
+    .eq('source_city_id', cityId)
+    .throwOnError()
+
+  return data.map(supabaseAdapter.toCityPreview)
+}
+
 export const supabaseService = {
   findAll,
   listCategories,
   findById,
+  getRelatedCities,
 }

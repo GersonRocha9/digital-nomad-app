@@ -1,4 +1,10 @@
-import { CategoryCode, ICategory, ICity, ITouristAttraction } from '../types'
+import {
+  CategoryCode,
+  ICategory,
+  ICity,
+  ITouristAttraction,
+  type CityPreview,
+} from '../types'
 
 import { Database } from './types'
 
@@ -10,6 +16,13 @@ type CityWithFullInfo =
 type CategoryRow = Database['public']['Tables']['categories']['Row']
 type TouristAttractionRow =
   Database['public']['Tables']['tourist_attractions']['Row']
+
+interface ICityPreviewRow {
+  id: string | null
+  name: string | null
+  country: string | null
+  cover_image: string | null
+}
 
 function toCity(data: CityWithFullInfo): ICity {
   const categories = data.categories as CategoryRow[]
@@ -48,6 +61,16 @@ function toCategory(row: CategoryRow): ICategory {
   }
 }
 
+function toCityPreview(row: ICityPreviewRow): CityPreview {
+  return {
+    id: row.id,
+    country: row.country,
+    name: row.name,
+    coverImage: `${storageURL}/${row.cover_image}`,
+  } as CityPreview
+}
+
 export const supabaseAdapter = {
   toCity,
+  toCityPreview,
 }
