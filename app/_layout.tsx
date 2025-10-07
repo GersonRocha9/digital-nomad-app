@@ -6,6 +6,8 @@ import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
 import theme from '@/src/components/theme/theme'
+import { SupabaseRepository } from '@/src/infra/repositories/adapters/supabase'
+import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider'
 import 'react-native-reanimated'
 
 if (__DEV__) {
@@ -41,20 +43,22 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Stack
-        screenOptions={{
-          contentStyle: {
-            backgroundColor: theme.colors.background,
-          },
-        }}
-      >
-        <Stack.Screen name="(protected)" options={{ headerShown: false }} />
-        <Stack.Screen name="sign-in" options={{ headerShown: false }} />
-        <Stack.Screen name="sign-up" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar style="light" />
-    </ThemeProvider>
+    <RepositoryProvider value={SupabaseRepository}>
+      <ThemeProvider theme={theme}>
+        <Stack
+          screenOptions={{
+            contentStyle: {
+              backgroundColor: theme.colors.background,
+            },
+          }}
+        >
+          <Stack.Screen name="(protected)" options={{ headerShown: false }} />
+          <Stack.Screen name="sign-in" options={{ headerShown: false }} />
+          <Stack.Screen name="sign-up" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+        </Stack>
+        <StatusBar style="light" />
+      </ThemeProvider>
+    </RepositoryProvider>
   )
 }

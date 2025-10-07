@@ -14,7 +14,6 @@ import { CityFilter } from '@/src/containers/city-filter'
 import { useCategories } from '@/src/data/useCategories'
 import { useCityFindAll } from '@/src/domain/city/operations/useCityFindAll'
 import { useDebounce } from '@/src/hooks/useDebounce'
-import { InMemoryCityRepo } from '@/src/infra/repositories/inMemory/InMemoryCityRepo'
 import type { CityPreview } from '@/src/types'
 
 export default function HomeScreen() {
@@ -27,14 +26,10 @@ export default function HomeScreen() {
     null,
   )
 
-  const { data: cities } = useCityFindAll(
-    {
-      name: debouncedCityName,
-      categoryId: selectedCategoryId,
-    },
-    // supabaseCityRepo,
-    new InMemoryCityRepo(),
-  )
+  const { data: cities } = useCityFindAll({
+    name: debouncedCityName,
+    categoryId: selectedCategoryId,
+  })
 
   const { data: categories } = useCategories()
 
