@@ -1,8 +1,8 @@
 import {
+  Category,
   CategoryCode,
-  ICategory,
-  ICity,
-  ITouristAttraction,
+  City,
+  TouristAttraction,
   type CityPreview,
 } from '../types'
 
@@ -17,14 +17,14 @@ type CategoryRow = Database['public']['Tables']['categories']['Row']
 type TouristAttractionRow =
   Database['public']['Tables']['tourist_attractions']['Row']
 
-interface ICityPreviewRow {
+interface CityPreviewRow {
   id: string | null
   name: string | null
   country: string | null
   cover_image: string | null
 }
 
-function toCity(data: CityWithFullInfo): ICity {
+function toCity(data: CityWithFullInfo): City {
   const categories = data.categories as CategoryRow[]
   const tourist_attractions = data.tourist_attractions as TouristAttractionRow[]
 
@@ -43,7 +43,7 @@ function toCity(data: CityWithFullInfo): ICity {
   }
 }
 
-function toTouristAttractions(row: TouristAttractionRow): ITouristAttraction {
+function toTouristAttractions(row: TouristAttractionRow): TouristAttraction {
   return {
     id: row.id,
     description: row.description,
@@ -52,7 +52,7 @@ function toTouristAttractions(row: TouristAttractionRow): ITouristAttraction {
   }
 }
 
-function toCategory(row: CategoryRow): ICategory {
+function toCategory(row: CategoryRow): Category {
   return {
     id: row.id,
     description: row.description,
@@ -61,7 +61,7 @@ function toCategory(row: CategoryRow): ICategory {
   }
 }
 
-function toCityPreview(row: ICityPreviewRow): CityPreview {
+function toCityPreview(row: CityPreviewRow): CityPreview {
   return {
     id: row.id,
     country: row.country,

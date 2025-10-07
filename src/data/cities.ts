@@ -1,8 +1,8 @@
 import { categories } from './categories'
 
-import type { CityPreview, ICity } from '../types'
+import type { City, CityPreview } from '../types'
 
-export const cities: (ICity & { relatedCitiesIds: string[] })[] = [
+export const cities: (City & { relatedCitiesIds: string[] })[] = [
   {
     id: 'rio-de-janeiro',
     name: 'Rio de Janeiro',

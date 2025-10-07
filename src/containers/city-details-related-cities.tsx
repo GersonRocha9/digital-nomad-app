@@ -8,9 +8,9 @@ import { Text } from '../components/text'
 import { useAppTheme } from '../components/theme/useAppTheme'
 import { useRelatedCities } from '../data/useRelatedCities'
 
-import type { ICity } from '../types'
+import type { City } from '../types'
 
-type Props = Pick<ICity, 'id'>
+type Props = Pick<City, 'id'>
 
 export function CityDetailsRelatedCities({ id }: Props) {
   const { data: cities } = useRelatedCities(id)

@@ -4,10 +4,10 @@ import { Box } from '../components/box'
 import { CategoryPill } from '../components/category-pill'
 import { SearchInput } from '../components/search-input'
 
-import type { ICategory } from '../types'
+import type { Category } from '../types'
 
 interface ICityFilterProps {
-  categories?: ICategory[]
+  categories?: Category[]
   cityName: string
   onChangeCityName: (cityName: string) => void
   selectedCategoryId: string | null

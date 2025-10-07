@@ -1,6 +1,6 @@
-import type { ICategory } from '../types'
+import type { Category } from '../types'
 
-export const categories: ICategory[] = [
+export const categories: Category[] = [
   {
     id: 'star',
     code: 'FAVORITE',

@@ -4,9 +4,9 @@ import { Box } from '../components/box'
 import { Text } from '../components/text'
 import { useAppTheme } from '../components/theme/useAppTheme'
 
-import type { ICity } from '../types'
+import type { City } from '../types'
 
-type CityDetailsMapsProps = Pick<ICity, 'location'>
+type CityDetailsMapsProps = Pick<City, 'location'>
 
 export function CityDetailsMaps({ location }: CityDetailsMapsProps) {
   const { borderRadii } = useAppTheme()

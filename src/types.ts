@@ -1,4 +1,4 @@
-export interface ITouristAttraction {
+export interface TouristAttraction {
   id: string
   name: string
   description: string
@@ -17,26 +17,26 @@ export type CategoryCode =
   | 'URBAN'
   | 'FAVORITE'
 
-export interface ICategory {
+export interface Category {
   id: string
   name: string
   description: string | null
   code: CategoryCode
 }
 
-export interface ICity {
+export interface City {
   id: string
   name: string
   country: string
   coverImage: string
   description: string
-  touristAttractions: ITouristAttraction[]
+  touristAttractions: TouristAttraction[]
   location: {
     latitude: number
     longitude: number
   }
-  categories: ICategory[]
+  categories: Category[]
   // relatedCitiesIds: string[]
 }
 
-export type CityPreview = Pick<ICity, 'id' | 'name' | 'country' | 'coverImage'>
+export type CityPreview = Pick<City, 'id' | 'name' | 'country' | 'coverImage'>

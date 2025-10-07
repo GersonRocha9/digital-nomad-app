@@ -9,7 +9,16 @@ module.exports = defineConfig([
       'import/order': [
         'error',
         {
-          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+            'object',
+            'type',
+          ],
           pathGroups: [
             {
               pattern: 'react',
@@ -42,14 +51,6 @@ module.exports = defineConfig([
       'import/first': 'error',
       'import/newline-after-import': 'error',
       '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-      '@typescript-eslint/naming-convention': [
-        'error',
-        {
-          selector: 'interface',
-          format: ['PascalCase'],
-          prefix: ['I'],
-        },
-      ],
     },
   },
 ])

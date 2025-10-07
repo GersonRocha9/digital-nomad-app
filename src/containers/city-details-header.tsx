@@ -10,9 +10,9 @@ import { Icon } from '../components/icon'
 import { IconButton } from '../components/icon-button'
 import { PILL_HEIGHT } from '../components/pill'
 
-import type { ICity } from '../types'
+import type { City } from '../types'
 
-type CityDetailsProps = Pick<ICity, 'id' | 'categories' | 'coverImage'>
+type CityDetailsProps = Pick<City, 'id' | 'categories' | 'coverImage'>
 
 export function CityDetailsHeader({
   categories,

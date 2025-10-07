@@ -2,9 +2,9 @@ import { Accordion } from '../components/accordion'
 import { Box } from '../components/box'
 import { Text } from '../components/text'
 
-import type { ICity } from '../types'
+import type { City } from '../types'
 
-type Props = Pick<ICity, 'touristAttractions'>
+type Props = Pick<City, 'touristAttractions'>
 
 export function CityDetailsTouristAttractions({ touristAttractions }: Props) {
   return (

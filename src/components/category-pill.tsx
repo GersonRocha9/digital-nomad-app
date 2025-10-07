@@ -1,13 +1,13 @@
 import { Pill, type IPillProps } from './pill'
 
-import type { CategoryCode, ICategory } from '../types'
+import type { Category, CategoryCode } from '../types'
 import type { IconName } from './icon'
 
-type ICategoryPillProps = {
-  category: ICategory
+type CategoryPillProps = {
+  category: Category
 } & Pick<IPillProps, 'active' | 'onPress'>
 
-export function CategoryPill({ category, ...pillProps }: ICategoryPillProps) {
+export function CategoryPill({ category, ...pillProps }: CategoryPillProps) {
   return (
     <Pill
       iconName={categoryIconMap[category.code]}

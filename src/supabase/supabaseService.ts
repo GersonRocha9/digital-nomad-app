@@ -1,14 +1,14 @@
 import { supabase } from './supabase'
 import { storageURL, supabaseAdapter } from './supabaseAdapter'
 
-import type { CategoryCode, CityPreview, ICategory, ICity } from '../types'
+import type { Category, CategoryCode, City, CityPreview } from '../types'
 
-export interface ICityFilters {
+export interface CityFilters {
   name?: string
   categoryId?: string | null
 }
 
-async function findAll(filters: ICityFilters): Promise<CityPreview[]> {
+async function findAll(filters: CityFilters): Promise<CityPreview[]> {
   try {
     const fields = 'id, name, country, cover_image'
 
@@ -45,7 +45,7 @@ async function findAll(filters: ICityFilters): Promise<CityPreview[]> {
   }
 }
 
-async function listCategories(): Promise<ICategory[]> {
+async function listCategories(): Promise<Category[]> {
   const { data, error } = await supabase.from('categories').select('*')
 
   if (error) {
@@ -60,7 +60,7 @@ async function listCategories(): Promise<ICategory[]> {
   }))
 }
 
-async function findById(id: string): Promise<ICity> {
+async function findById(id: string): Promise<City> {
   const { data, error } = await supabase
     .from('cities_with_full_info')
     .select('*')
