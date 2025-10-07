@@ -90,3 +90,9 @@ export const supabaseService = {
   findById,
   getRelatedCities,
 }
+
+export const supabaseCityRepo = {
+  findAll,
+  findById,
+  getRelatedCities,
+}
