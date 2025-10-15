@@ -1,6 +1,7 @@
 import type { City, CityPreview } from '@/src/domain/city/City'
 import type { CityFindAllFilters, ICityRepo } from '@/src/domain/city/ICityRepo'
-import { cities } from '@/src/infra/repositories/adapters/inMemory/cities'
+
+import { cities } from './data/cities'
 
 export class InMemoryCityRepo implements ICityRepo {
   async findAll(filters: CityFindAllFilters): Promise<CityPreview[]> {
