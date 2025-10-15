@@ -5,7 +5,7 @@ import { useAppTheme } from './theme/useAppTheme'
 import type { ThemeColors } from './theme/theme'
 
 const IconFromIcoMoon = createIconSetFromIcoMoon(
-  require('../../assets/icons/selection.json'),
+  require('../../../assets/icons/selection.json'),
   'IcoMoon',
   'icomoon.ttf',
 )

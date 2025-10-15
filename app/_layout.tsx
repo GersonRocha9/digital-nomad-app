@@ -5,9 +5,9 @@ import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
-import theme from '@/src/components/theme/theme'
 import { SupabaseRepository } from '@/src/infra/repositories/adapters/supabase'
 import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider'
+import theme from '@/src/ui/components/theme/theme'
 import 'react-native-reanimated'
 
 if (__DEV__) {

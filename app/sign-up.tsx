@@ -1,5 +1,5 @@
-import { Box } from '@/src/components/box'
-import { Text } from '@/src/components/text'
+import { Box } from '@/src/ui/components/box'
+import { Text } from '@/src/ui/components/text'
 
 export default function SignUpScreen() {
   return (

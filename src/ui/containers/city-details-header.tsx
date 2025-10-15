@@ -10,7 +10,7 @@ import { Icon } from '../components/icon'
 import { IconButton } from '../components/icon-button'
 import { PILL_HEIGHT } from '../components/pill'
 
-import type { City } from '../types'
+import type { City } from '../../types'
 
 type CityDetailsProps = Pick<City, 'id' | 'categories' | 'coverImage'>
 

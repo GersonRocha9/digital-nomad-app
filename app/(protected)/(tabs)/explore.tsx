@@ -1,6 +1,6 @@
-import { Box } from '@/src/components/box'
-import { Screen } from '@/src/components/screen'
-import { Text } from '@/src/components/text'
+import { Box } from '@/src/ui/components/box'
+import { Screen } from '@/src/ui/components/screen'
+import { Text } from '@/src/ui/components/text'
 
 export default function ExploreScreen() {
   return (

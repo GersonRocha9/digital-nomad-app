@@ -7,7 +7,7 @@ import { Box } from '../components/box'
 import { IconButton } from '../components/icon-button'
 import { useAppTheme } from '../components/theme/useAppTheme'
 
-import type { City } from '../types'
+import type { City } from '../../types'
 
 type BottomSheetMapProps = Omit<IBottomSheetProps, 'children'> & {
   location: City['location']

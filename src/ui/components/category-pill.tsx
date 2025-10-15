@@ -1,6 +1,6 @@
 import { Pill, type IPillProps } from './pill'
 
-import type { Category, CategoryCode } from '../types'
+import type { Category, CategoryCode } from '../../types'
 import type { IconName } from './icon'
 
 type CategoryPillProps = {

@@ -12,7 +12,7 @@ import { Icon } from './icon'
 import { Text } from './text'
 import { useAppTheme } from './theme/useAppTheme'
 
-import type { CityPreview } from '../types'
+import type { CityPreview } from '../../types'
 
 interface ICityCardProps {
   cityPreview: CityPreview

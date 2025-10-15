@@ -6,15 +6,15 @@ import { useScrollToTop } from '@react-navigation/native'
 import Animated, { FadingTransition } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import { Box } from '@/src/components/box'
-import { CityCard } from '@/src/components/city-card'
-import { Screen } from '@/src/components/screen'
-import { useAppTheme } from '@/src/components/theme/useAppTheme'
-import { CityFilter } from '@/src/containers/city-filter'
 import { useCategoryFindAll } from '@/src/domain/category/operations/useCategoryFindAll'
 import { useCityFindAll } from '@/src/domain/city/operations/useCityFindAll'
 import { useDebounce } from '@/src/hooks/useDebounce'
 import type { CityPreview } from '@/src/types'
+import { Box } from '@/src/ui/components/box'
+import { CityCard } from '@/src/ui/components/city-card'
+import { Screen } from '@/src/ui/components/screen'
+import { useAppTheme } from '@/src/ui/components/theme/useAppTheme'
+import { CityFilter } from '@/src/ui/containers/city-filter'
 
 export default function HomeScreen() {
   const { spacing } = useAppTheme()
