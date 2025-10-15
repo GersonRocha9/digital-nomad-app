@@ -4,7 +4,7 @@ import { Button, StyleSheet, TextInput } from 'react-native'
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { useAuthSignIn } from '@/src/domain/auth/useAuthSignIn'
+import { useAuthSignIn } from '@/src/domain/auth/operations/useAuthSignIn'
 import { Screen } from '@/src/ui/components/screen'
 
 export default function SignInScreen() {
