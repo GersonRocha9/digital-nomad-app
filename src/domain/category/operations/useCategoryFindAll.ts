@@ -1,4 +1,4 @@
-import { useFetchData } from '@/src/data/useFetchData'
+import { useFetchData } from '@/src/infra/operations/useFetchData'
 import { useRepository } from '@/src/infra/repositories/RepositoryProvider'
 
 export function useCategoryFindAll() {
