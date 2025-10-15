@@ -5,7 +5,7 @@ import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
-import { SupabaseRepository } from '@/src/infra/repositories/adapters/supabase'
+import { InMemoryRepository } from '@/src/infra/repositories/adapters/inMemory'
 import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider'
 import theme from '@/src/ui/components/theme/theme'
 import 'react-native-reanimated'
@@ -43,7 +43,7 @@ export default function RootLayout() {
   }
 
   return (
-    <RepositoryProvider value={SupabaseRepository}>
+    <RepositoryProvider value={InMemoryRepository}>
       <ThemeProvider theme={theme}>
         <Stack
           screenOptions={{

@@ -4,14 +4,16 @@ import { Button, StyleSheet, TextInput } from 'react-native'
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { useAuthSignIn } from '@/src/domain/auth/useAuthSignIn'
 import { Screen } from '@/src/ui/components/screen'
 
 export default function SignInScreen() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { mutate: signIn } = useAuthSignIn()
 
   function handleSignIn() {
-    console.log(email, password)
+    signIn({ email, password })
   }
 
   return (
