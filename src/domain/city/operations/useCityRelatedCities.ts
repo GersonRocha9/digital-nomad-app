@@ -1,8 +1,8 @@
-import { useFetchData } from '@/src/infra/operations/useFetchData'
+import { useAppQuery } from '@/src/infra/operations/useAppQuery'
 import { useRepository } from '@/src/infra/repositories/RepositoryProvider'
 
 export function useCityRelatedCities(cityId: string) {
   const { city } = useRepository()
 
-  return useFetchData(() => city.getRelatedCities(cityId))
+  return useAppQuery(() => city.getRelatedCities(cityId))
 }
