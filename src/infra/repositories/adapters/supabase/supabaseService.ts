@@ -1,7 +1,7 @@
+import type { Category, CategoryCode, City, CityPreview } from '@/src/types'
+
 import { supabase } from './supabase'
 import { storageURL, supabaseAdapter } from './supabaseAdapter'
-
-import type { Category, CategoryCode, City, CityPreview } from '../types'
 
 export interface CityFilters {
   name?: string

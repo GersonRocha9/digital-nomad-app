@@ -1,4 +1,7 @@
-import { supabaseService, type CityFilters } from '../supabase/supabaseService'
+import {
+  type CityFilters,
+  supabaseService,
+} from '../infra/repositories/adapters/supabase/supabaseService'
 
 import { useFetchData } from './useFetchData'
 

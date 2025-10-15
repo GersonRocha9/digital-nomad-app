@@ -1,4 +1,4 @@
-import { supabaseService } from '../supabase/supabaseService'
+import { supabaseService } from '../infra/repositories/adapters/supabase/supabaseService'
 
 import { useFetchData } from './useFetchData'
 
