@@ -11,7 +11,7 @@ import { CityCard } from '@/src/components/city-card'
 import { Screen } from '@/src/components/screen'
 import { useAppTheme } from '@/src/components/theme/useAppTheme'
 import { CityFilter } from '@/src/containers/city-filter'
-import { useCategories } from '@/src/data/useCategories'
+import { useCategoryFindAll } from '@/src/domain/category/operations/useCategoryFindAll'
 import { useCityFindAll } from '@/src/domain/city/operations/useCityFindAll'
 import { useDebounce } from '@/src/hooks/useDebounce'
 import type { CityPreview } from '@/src/types'
@@ -31,7 +31,7 @@ export default function HomeScreen() {
     categoryId: selectedCategoryId,
   })
 
-  const { data: categories } = useCategories()
+  const { data: categories } = useCategoryFindAll()
 
   const flatListRef = useRef(null)
   useScrollToTop(flatListRef)
