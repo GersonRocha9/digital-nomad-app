@@ -14,11 +14,11 @@ import { CityDetailsInfo } from '@/src/containers/city-details-info'
 import { CityDetailsMaps } from '@/src/containers/city-details-maps'
 import { CityDetailsRelatedCities } from '@/src/containers/city-details-related-cities'
 import { CityDetailsTouristAttractions } from '@/src/containers/city-details-tourist-attractions'
-import { useCityDetails } from '@/src/data/useCityDetails'
+import { useCityFindById } from '@/src/domain/city/operations/useCityFindById'
 
 export default function CityDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>()
-  const { data: city } = useCityDetails(id)
+  const { data: city } = useCityFindById(id)
   const isOpenBottomSheet = useSharedValue(false)
 
   function toggleMapBottomSheet() {

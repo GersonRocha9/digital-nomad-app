@@ -7,11 +7,21 @@ export class InMemoryCityRepo implements ICityRepo {
     return cities
   }
 
-  findById(id: string): Promise<City> {
-    throw new Error('Method not implemented')
+  async findById(id: string): Promise<City> {
+    const city = cities.find((city) => city?.id === id)
+
+    if (city) {
+      return city
+    }
+
+    throw new Error('City not found')
   }
 
-  getRelatedCities(cityId: string): Promise<CityPreview[]> {
-    throw new Error('Method not implemented')
+  async getRelatedCities(cityId: string): Promise<CityPreview[]> {
+    const relatedCities = cities.map((city) => city.relatedCitiesIds)
+
+    console.log(relatedCities)
+
+    throw new Error('Related Cities not found')
   }
 }

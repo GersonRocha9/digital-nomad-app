@@ -6,14 +6,14 @@ import { Box } from '../components/box'
 import { CityCard } from '../components/city-card'
 import { Text } from '../components/text'
 import { useAppTheme } from '../components/theme/useAppTheme'
-import { useRelatedCities } from '../data/useRelatedCities'
+import { useCityRelatedCities } from '../domain/city/operations/useCityRelatedCities'
 
 import type { City } from '../types'
 
 type Props = Pick<City, 'id'>
 
 export function CityDetailsRelatedCities({ id }: Props) {
-  const { data: cities } = useRelatedCities(id)
+  const { data: cities } = useCityRelatedCities(id)
   const { spacing } = useAppTheme()
   const { bottom } = useSafeAreaInsets()
   const { width } = useWindowDimensions()

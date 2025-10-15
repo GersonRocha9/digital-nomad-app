@@ -1,7 +1,7 @@
-import { supabaseService, type ICityFilters } from '../supabase/supabaseService'
+import { supabaseService, type CityFilters } from '../supabase/supabaseService'
 
 import { useFetchData } from './useFetchData'
 
-export function useCities(filters: ICityFilters) {
+export function useCities(filters: CityFilters) {
   return useFetchData(() => supabaseService.findAll(filters), [filters])
 }
