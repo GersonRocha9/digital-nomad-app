@@ -5,9 +5,12 @@ import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
+import { ConsoleFeedback } from '@/src/infra/feedbackService/adapters/console/ConsoleFeedback'
+import { FeedbackProvider } from '@/src/infra/feedbackService/FeedbackProvider'
 import { InMemoryRepository } from '@/src/infra/repositories/adapters/inMemory'
 import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider'
 import theme from '@/src/ui/components/theme/theme'
+
 import 'react-native-reanimated'
 
 if (__DEV__) {
@@ -43,24 +46,26 @@ export default function RootLayout() {
   }
 
   return (
-    <RepositoryProvider value={InMemoryRepository}>
-      <ThemeProvider theme={theme}>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            fullScreenGestureEnabled: true,
-            contentStyle: {
-              backgroundColor: theme.colors.background,
-            },
-          }}
-        >
-          <Stack.Screen name="(protected)" />
-          <Stack.Screen name="sign-in" />
-          <Stack.Screen name="sign-up" />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-        <StatusBar style="light" />
-      </ThemeProvider>
-    </RepositoryProvider>
+    <FeedbackProvider value={ConsoleFeedback}>
+      <RepositoryProvider value={InMemoryRepository}>
+        <ThemeProvider theme={theme}>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              fullScreenGestureEnabled: true,
+              contentStyle: {
+                backgroundColor: theme.colors.background,
+              },
+            }}
+          >
+            <Stack.Screen name="(protected)" />
+            <Stack.Screen name="sign-in" />
+            <Stack.Screen name="sign-up" />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="light" />
+        </ThemeProvider>
+      </RepositoryProvider>
+    </FeedbackProvider>
   )
 }
