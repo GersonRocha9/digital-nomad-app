@@ -1,8 +1,8 @@
+import type { City } from '@/src/domain/city/City'
+
 import { Accordion } from '../components/accordion'
 import { Box } from '../components/box'
 import { Text } from '../components/text'
-
-import type { City } from '../../types'
 
 type Props = Pick<City, 'touristAttractions'>
 

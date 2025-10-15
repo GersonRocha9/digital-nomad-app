@@ -7,14 +7,14 @@ import Animated, { FadingTransition } from 'react-native-reanimated'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { useCategoryFindAll } from '@/src/domain/category/operations/useCategoryFindAll'
+import type { CityPreview } from '@/src/domain/city/City'
 import { useCityFindAll } from '@/src/domain/city/operations/useCityFindAll'
-import { useDebounce } from '@/src/hooks/useDebounce'
-import type { CityPreview } from '@/src/types'
 import { Box } from '@/src/ui/components/box'
 import { CityCard } from '@/src/ui/components/city-card'
 import { Screen } from '@/src/ui/components/screen'
 import { useAppTheme } from '@/src/ui/components/theme/useAppTheme'
 import { CityFilter } from '@/src/ui/containers/city-filter'
+import { useDebounce } from '@/src/utils/hooks/useDebounce'
 
 export default function HomeScreen() {
   const { spacing } = useAppTheme()

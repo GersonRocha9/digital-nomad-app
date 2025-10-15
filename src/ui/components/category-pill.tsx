@@ -1,6 +1,7 @@
+import type { Category, CategoryCode } from '@/src/domain/category/Category'
+
 import { Pill, type IPillProps } from './pill'
 
-import type { Category, CategoryCode } from '../../types'
 import type { IconName } from './icon'
 
 type CategoryPillProps = {

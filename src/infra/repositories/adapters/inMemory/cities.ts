@@ -1,6 +1,6 @@
-import { categories } from './categories'
+import type { City, CityPreview } from '@/src/domain/city/City'
 
-import type { City, CityPreview } from '../../../../types'
+import { categories } from './categories'
 
 export const cities: (City & { relatedCitiesIds: string[] })[] = [
   {

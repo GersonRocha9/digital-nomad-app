@@ -6,13 +6,13 @@ import {
 
 import { Link } from 'expo-router'
 
+import type { CityPreview } from '@/src/domain/city/City'
+
 import { BlackOpacity } from './black-opacity'
 import { Box } from './box'
 import { Icon } from './icon'
 import { Text } from './text'
 import { useAppTheme } from './theme/useAppTheme'
-
-import type { CityPreview } from '../../types'
 
 interface ICityCardProps {
   cityPreview: CityPreview

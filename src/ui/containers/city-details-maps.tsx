@@ -1,10 +1,10 @@
 import MapView from 'react-native-maps'
 
+import type { City } from '@/src/domain/city/City'
+
 import { Box } from '../components/box'
 import { Text } from '../components/text'
 import { useAppTheme } from '../components/theme/useAppTheme'
-
-import type { City } from '../../types'
 
 type CityDetailsMapsProps = Pick<City, 'location'>
 

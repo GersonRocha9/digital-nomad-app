@@ -1,7 +1,7 @@
+import type { City } from '@/src/domain/city/City'
+
 import { Box } from '../components/box'
 import { Text } from '../components/text'
-
-import type { City } from '../../types'
 
 type CityDetailsProps = Pick<City, 'name' | 'country' | 'description'>
 

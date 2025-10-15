@@ -1,4 +1,4 @@
-import type { Category, CategoryCode } from '@/src/types'
+import type { Category, CategoryCode } from '@/src/domain/category/Category'
 
 import { supabase } from './supabase'
 

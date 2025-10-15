@@ -2,12 +2,12 @@ import { useWindowDimensions } from 'react-native'
 
 import MapView from 'react-native-maps'
 
+import type { City } from '@/src/domain/city/City'
+
 import { BottomSheet, type IBottomSheetProps } from '../components/bottom-sheet'
 import { Box } from '../components/box'
 import { IconButton } from '../components/icon-button'
 import { useAppTheme } from '../components/theme/useAppTheme'
-
-import type { City } from '../../types'
 
 type BottomSheetMapProps = Omit<IBottomSheetProps, 'children'> & {
   location: City['location']

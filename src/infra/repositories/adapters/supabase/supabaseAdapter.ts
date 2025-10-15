@@ -1,10 +1,9 @@
+import type { Category, CategoryCode } from '@/src/domain/category/Category'
 import type {
-  Category,
-  CategoryCode,
   City,
   CityPreview,
   TouristAttraction,
-} from '@/src/types'
+} from '@/src/domain/city/City'
 
 import type { Database } from './types'
 

@@ -1,4 +1,4 @@
-import type { City, CityPreview } from '@/src/types'
+import type { City, CityPreview } from '@/src/domain/city/City'
 
 import { supabase } from './supabase'
 import { storageURL, supabaseAdapter } from './supabaseAdapter'

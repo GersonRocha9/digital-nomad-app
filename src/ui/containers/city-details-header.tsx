@@ -3,14 +3,14 @@ import { ImageBackground, ScrollView } from 'react-native'
 import { router } from 'expo-router'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
+import type { City } from '@/src/domain/city/City'
+
 import { BlackOpacity } from '../components/black-opacity'
 import { Box } from '../components/box'
 import { CategoryPill } from '../components/category-pill'
 import { Icon } from '../components/icon'
 import { IconButton } from '../components/icon-button'
 import { PILL_HEIGHT } from '../components/pill'
-
-import type { City } from '../../types'
 
 type CityDetailsProps = Pick<City, 'id' | 'categories' | 'coverImage'>
 

@@ -2,13 +2,13 @@ import { ScrollView, useWindowDimensions } from 'react-native'
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
+import type { City } from '@/src/domain/city/City'
+
 import { useCityRelatedCities } from '../../domain/city/operations/useCityRelatedCities'
 import { Box } from '../components/box'
 import { CityCard } from '../components/city-card'
 import { Text } from '../components/text'
 import { useAppTheme } from '../components/theme/useAppTheme'
-
-import type { City } from '../../types'
 
 type Props = Pick<City, 'id'>
 

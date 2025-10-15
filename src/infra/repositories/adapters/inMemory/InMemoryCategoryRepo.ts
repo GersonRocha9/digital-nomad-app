@@ -1,5 +1,5 @@
+import type { Category } from '@/src/domain/category/Category'
 import type { ICategoryRepo } from '@/src/domain/category/ICategoryRepo'
-import type { Category } from '@/src/types'
 
 import { categories } from './categories'
 
