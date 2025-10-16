@@ -5,16 +5,15 @@ import { Header } from '@/src/ui/components/header'
 import { Logo } from '@/src/ui/components/logo'
 import { Screen } from '@/src/ui/components/screen'
 
-export default function SignUpScreen() {
-  function handleSignUp() {
-    console.log('cadastrou')
+export default function ResetPasswordScreen() {
+  function handleResetPassword() {
+    //
   }
-
   return (
     <Screen>
       <SafeAreaView>
-        <Header title="Criar conta" />
-        <Button title="Criar conta" onPress={handleSignUp} />
+        <Header title="Recuperar Senha" />
+        <Button title="Enviar link" onPress={handleResetPassword} />
         <Logo />
       </SafeAreaView>
     </Screen>

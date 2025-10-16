@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-import { Image } from 'react-native'
-
+import { Link } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { useAuthSignIn } from '@/src/domain/auth/operations/useAuthSignIn'
 import { Button } from '@/src/ui/components/button'
+import { Logo } from '@/src/ui/components/logo'
 import { Screen } from '@/src/ui/components/screen'
 import { Text } from '@/src/ui/components/text'
 import { TextInput } from '@/src/ui/components/text-input'
@@ -22,16 +22,7 @@ export default function SignInScreen() {
   return (
     <Screen>
       <SafeAreaView>
-        <Image
-          source={require('../assets/images/logo.png')}
-          style={{
-            width: 150,
-            height: 60,
-            alignSelf: 'center',
-            marginTop: 20,
-            marginBottom: 60,
-          }}
-        />
+        <Logo />
 
         <Text variant="title22" alignSelf="center" marginBottom="s16">
           Bem-vindo
@@ -54,23 +45,27 @@ export default function SignInScreen() {
           secureTextEntry
         />
 
-        <Text
-          marginBottom="s16"
-          alignSelf="flex-end"
-          variant="text14"
-          color="primary"
-        >
-          Esqueceu sua senha?
-        </Text>
+        <Link href="/reset-password" asChild>
+          <Text mb="s16" alignSelf="flex-end" variant="text14" color="primary">
+            Esqueceu sua senha
+          </Text>
+        </Link>
 
         <Button title="Entrar" onPress={handleSignIn} />
 
-        <Text marginTop="s16" alignSelf="center" variant="text14" color="gray2">
-          Ainda não tem sua conta?{' '}
-          <Text color="primary" variant="title14">
-            Criar
+        <Link href="/sign-up" asChild>
+          <Text
+            marginTop="s16"
+            alignSelf="center"
+            variant="text14"
+            color="gray2"
+          >
+            Ainda não tem sua conta?{' '}
+            <Text color="primary" variant="title14">
+              Criar
+            </Text>
           </Text>
-        </Text>
+        </Link>
       </SafeAreaView>
     </Screen>
   )
