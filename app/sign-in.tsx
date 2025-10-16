@@ -1,11 +1,12 @@
 import { useState } from 'react'
 
-import { Button, StyleSheet, TextInput } from 'react-native'
+import { Button } from 'react-native'
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { useAuthSignIn } from '@/src/domain/auth/operations/useAuthSignIn'
 import { Screen } from '@/src/ui/components/screen'
+import { TextInput } from '@/src/ui/components/text-input'
 
 export default function SignInScreen() {
   const [email, setEmail] = useState('')
@@ -20,19 +21,21 @@ export default function SignInScreen() {
     <Screen>
       <SafeAreaView>
         <TextInput
+          label="E-mail"
           value={email}
           onChangeText={setEmail}
           autoCapitalize="none"
           placeholder="E-mail"
-          style={styles.input}
         />
 
         <TextInput
+          errorMessage="Senha incorreta"
+          label="Senha"
           value={password}
           onChangeText={setPassword}
           autoCapitalize="none"
           placeholder="Senha"
-          style={styles.input}
+          secureTextEntry
         />
 
         <Button title="Entrar" onPress={handleSignIn} />
@@ -40,14 +43,3 @@ export default function SignInScreen() {
     </Screen>
   )
 }
-
-const styles = StyleSheet.create({
-  input: {
-    borderColor: '#FFF',
-    borderWidth: 1,
-    height: 60,
-    color: '#FFF',
-    fontSize: 20,
-    marginVertical: 16,
-  },
-})
