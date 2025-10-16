@@ -22,7 +22,7 @@ export default function SignUpScreen() {
   }
 
   return (
-    <Screen>
+    <Screen scrollable>
       <SafeAreaView>
         <Header title="Criar conta" />
 
