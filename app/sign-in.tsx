@@ -22,6 +22,7 @@ export default function SignInScreen() {
         <TextInput
           value={email}
           onChangeText={setEmail}
+          autoCapitalize="none"
           placeholder="E-mail"
           style={styles.input}
         />
@@ -29,6 +30,7 @@ export default function SignInScreen() {
         <TextInput
           value={password}
           onChangeText={setPassword}
+          autoCapitalize="none"
           placeholder="Senha"
           style={styles.input}
         />

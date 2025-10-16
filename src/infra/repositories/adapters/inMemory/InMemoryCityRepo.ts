@@ -19,9 +19,7 @@ export class InMemoryCityRepo implements ICityRepo {
   }
 
   async getRelatedCities(cityId: string): Promise<CityPreview[]> {
-    const relatedCities = cities.map((city) => city.relatedCitiesIds)
-
-    console.log(relatedCities)
+    cities.map((city) => city.relatedCitiesIds)
 
     throw new Error('Related Cities not found')
   }
