@@ -6,8 +6,8 @@ import { Screen } from '@/src/ui/components/screen'
 import { SignUpForm } from '@/src/ui/containers/sign-up-form/sign-up-form'
 
 export default function SignUpScreen() {
-  function handleSignUp() {
-    console.log('cadastrou')
+  function handleSignUp(data) {
+    console.log(data)
   }
 
   return (
