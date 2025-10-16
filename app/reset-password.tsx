@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
+import { router } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
+import { useAuthSendResetPasswordEmail } from '@/src/domain/auth/operations/useAuthSendResetPasswordEmail'
 import { Button } from '@/src/ui/components/button'
 import { Header } from '@/src/ui/components/header'
 import { Logo } from '@/src/ui/components/logo'
@@ -12,9 +14,15 @@ import { TextLink } from '@/src/ui/components/text-link'
 
 export default function ResetPasswordScreen() {
   const [email, setEmail] = useState('')
+
+  const { mutate: sendResetPasswordEmail } = useAuthSendResetPasswordEmail({
+    onSuccess: router.back,
+  })
+
   function handleResetPassword() {
-    //
+    sendResetPasswordEmail({ email })
   }
+
   return (
     <Screen>
       <SafeAreaView>
@@ -30,6 +38,7 @@ export default function ResetPasswordScreen() {
           value={email}
           onChangeText={setEmail}
           placeholder="voce@exemplo.com"
+          autoCapitalize="none"
         />
 
         <Button title="Enviar link" onPress={handleResetPassword} />
