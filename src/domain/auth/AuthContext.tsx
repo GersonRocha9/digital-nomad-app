@@ -6,7 +6,7 @@ import {
   type PropsWithChildren,
 } from 'react'
 
-import { router } from 'expo-router'
+import { router, SplashScreen } from 'expo-router'
 
 import { useStorage } from '@/src/infra/storage/StorageContext'
 
@@ -18,6 +18,8 @@ interface AuthState {
   saveAuthUser: (authUser: AuthUser) => Promise<void>
   removeAuthUser: () => Promise<void>
 }
+
+SplashScreen.preventAutoHideAsync()
 
 export const AuthContext = createContext<AuthState>({
   authUser: null,
@@ -60,7 +62,14 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     loadAuthUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (isReady) {
+      SplashScreen.hide()
+    }
+  }, [isReady])
 
   return (
     <AuthContext.Provider
