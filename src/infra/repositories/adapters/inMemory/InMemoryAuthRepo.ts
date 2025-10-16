@@ -1,5 +1,5 @@
 import type { AuthUser } from '@/src/domain/auth/AuthUser'
-import type { IAuthRepo } from '@/src/domain/auth/IAuthRepo'
+import type { AuthSignUpParams, IAuthRepo } from '@/src/domain/auth/IAuthRepo'
 
 import { authUsers } from './data/authUsers'
 
@@ -15,6 +15,18 @@ export class InMemoryAuthUserRepo implements IAuthRepo {
   }
 
   async signOut(): Promise<void> {}
+
+  async signUp(params: AuthSignUpParams): Promise<void> {
+    const userAlreadyExists = authUsers.find(
+      (user) => user.email === params.email,
+    )
+
+    if (userAlreadyExists) {
+      throw new Error('user already exists')
+    }
+
+    return
+  }
 
   async sendResetPasswordEmail(email: string): Promise<void> {
     console.log('the reset password has been sent:', email)
