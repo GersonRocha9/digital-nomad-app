@@ -1,10 +1,9 @@
 import { useState } from 'react'
 
-import { Button } from 'react-native'
-
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { useAuthSignIn } from '@/src/domain/auth/operations/useAuthSignIn'
+import { Button } from '@/src/ui/components/button'
 import { Screen } from '@/src/ui/components/screen'
 import { TextInput } from '@/src/ui/components/text-input'
 
@@ -38,7 +37,8 @@ export default function SignInScreen() {
           secureTextEntry
         />
 
-        <Button title="Entrar" onPress={handleSignIn} />
+        <Button title="Entrar" onPress={handleSignIn} mb="s56" />
+        <Button title="Entrar" onPress={handleSignIn} variant="secondary" />
       </SafeAreaView>
     </Screen>
   )
