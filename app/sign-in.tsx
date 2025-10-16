@@ -9,6 +9,7 @@ import { Logo } from '@/src/ui/components/logo'
 import { Screen } from '@/src/ui/components/screen'
 import { Text } from '@/src/ui/components/text'
 import { TextInput } from '@/src/ui/components/text-input'
+import { TextLink } from '@/src/ui/components/text-link'
 
 export default function SignInScreen() {
   const [email, setEmail] = useState('')
@@ -53,19 +54,11 @@ export default function SignInScreen() {
 
         <Button title="Entrar" onPress={handleSignIn} />
 
-        <Link href="/sign-up" asChild>
-          <Text
-            marginTop="s16"
-            alignSelf="center"
-            variant="text14"
-            color="gray2"
-          >
-            Ainda não tem sua conta?{' '}
-            <Text color="primary" variant="title14">
-              Criar
-            </Text>
-          </Text>
-        </Link>
+        <TextLink
+          text="Ainda não tem uma conta?"
+          ctaText="Criar"
+          href="/sign-up"
+        />
       </SafeAreaView>
     </Screen>
   )
