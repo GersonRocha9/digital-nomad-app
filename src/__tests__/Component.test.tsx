@@ -2,7 +2,12 @@ import { useState } from 'react'
 
 import { Pressable, Text, View } from 'react-native'
 
-import { fireEvent, render, screen } from '@testing-library/react-native'
+import {
+  fireEvent,
+  render,
+  screen,
+  userEvent,
+} from '@testing-library/react-native'
 
 function Component({ label, loading }: { label: string; loading: boolean }) {
   const [count, setCount] = useState(0)
@@ -47,5 +52,22 @@ describe('Component', () => {
     expect(screen.getByText(/Pressed:0/i)).toBeOnTheScreen()
     fireEvent.press(screen.getByTestId('label-button'))
     expect(screen.getByText(/Pressed:1/i)).toBeOnTheScreen()
+  })
+
+  it('should display the correct count number when press on reset button 4 times', async () => {
+    jest.useFakeTimers()
+
+    render(<Component label="Hello world" loading={false} />)
+    expect(screen.getByText(/Pressed:0/i)).toBeOnTheScreen()
+
+    const user = userEvent.setup()
+    await user.press(screen.getByTestId('label-button'))
+    await user.press(screen.getByTestId('label-button'))
+    await user.press(screen.getByTestId('label-button'))
+    await user.press(screen.getByTestId('label-button'))
+
+    expect(screen.getByText(/Pressed:4/i)).toBeOnTheScreen()
+
+    jest.useRealTimers()
   })
 })
