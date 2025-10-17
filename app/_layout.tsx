@@ -6,7 +6,7 @@ import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
 import { AuthProvider } from '@/src/domain/auth/AuthContext'
-import { ConsoleFeedback } from '@/src/infra/feedbackService/adapters/console/ConsoleFeedback'
+import { AlertFeedback } from '@/src/infra/feedbackService/adapters/alert/AlertFeedback'
 import { FeedbackProvider } from '@/src/infra/feedbackService/FeedbackProvider'
 import { SupabaseRepository } from '@/src/infra/repositories/adapters/supabase'
 import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider'
@@ -51,7 +51,7 @@ export default function RootLayout() {
   return (
     <StorageProvider storage={AsyncStorage}>
       <AuthProvider>
-        <FeedbackProvider value={ConsoleFeedback}>
+        <FeedbackProvider value={AlertFeedback}>
           <RepositoryProvider value={SupabaseRepository}>
             <ThemeProvider theme={theme}>
               <Stack
