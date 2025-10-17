@@ -6,9 +6,10 @@ import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
 import { AuthProvider } from '@/src/domain/auth/AuthContext'
-import { AlertFeedback } from '@/src/infra/feedbackService/adapters/alert/AlertFeedback'
+import { Toast } from '@/src/infra/feedbackService/adapters/toast/Toast'
+import { ToastFeedback } from '@/src/infra/feedbackService/adapters/toast/ToastFeedback'
 import { FeedbackProvider } from '@/src/infra/feedbackService/FeedbackProvider'
-import { SupabaseRepository } from '@/src/infra/repositories/adapters/supabase'
+import { InMemoryRepository } from '@/src/infra/repositories/adapters/inMemory'
 import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider'
 import { AsyncStorage } from '@/src/infra/storage/adapters/AsyncStorage'
 import { StorageProvider } from '@/src/infra/storage/StorageContext'
@@ -51,8 +52,8 @@ export default function RootLayout() {
   return (
     <StorageProvider storage={AsyncStorage}>
       <AuthProvider>
-        <FeedbackProvider value={AlertFeedback}>
-          <RepositoryProvider value={SupabaseRepository}>
+        <FeedbackProvider value={ToastFeedback}>
+          <RepositoryProvider value={InMemoryRepository}>
             <ThemeProvider theme={theme}>
               <Stack
                 screenOptions={{
@@ -69,6 +70,7 @@ export default function RootLayout() {
                 <Stack.Screen name="+not-found" />
               </Stack>
               <StatusBar style="light" />
+              <Toast />
             </ThemeProvider>
           </RepositoryProvider>
         </FeedbackProvider>
