@@ -9,25 +9,15 @@ const mockSendFeedback = jest.fn()
 const mockSaveAuthUser = jest.fn()
 
 jest.mock('@/src/infra/repositories/RepositoryProvider', () => ({
-  useRepository: () => {
-    return {
-      auth: {
-        signIn: mockSignIn,
-      },
-    }
-  },
+  useRepository: () => ({ auth: { signIn: mockSignIn } }),
 }))
 
 jest.mock('@/src/infra/feedbackService/FeedbackProvider', () => ({
-  useFeedbackService: () => ({
-    send: mockSendFeedback,
-  }),
+  useFeedbackService: () => ({ send: mockSendFeedback }),
 }))
 
 jest.mock('../../AuthContext', () => ({
-  useAuth: () => ({
-    saveAuthUser: mockSaveAuthUser,
-  }),
+  useAuth: () => ({ saveAuthUser: mockSaveAuthUser }),
 }))
 
 beforeEach(() => {
