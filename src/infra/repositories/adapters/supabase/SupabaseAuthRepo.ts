@@ -1,0 +1,44 @@
+import { AuthUser } from '@/src/domain/auth/AuthUser'
+import type { AuthSignUpParams, IAuthRepo } from '@/src/domain/auth/IAuthRepo'
+
+import { supabase } from './supabase'
+import { supabaseAdapter } from './supabaseAdapter'
+
+export class SupabaseAuthRepo implements IAuthRepo {
+  signIn = async (email: string, password: string): Promise<AuthUser> => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    })
+
+    if (error) {
+      throw new Error('user not')
+    }
+
+    return supabaseAdapter.toAuthUser(data.user)
+  }
+
+  signUp = async (params: AuthSignUpParams): Promise<void> => {
+    const { error } = await supabase.auth.signUp({
+      email: params.email,
+      password: params.password,
+      options: {
+        data: {
+          fullname: params.fullname,
+        },
+      },
+    })
+
+    if (error) {
+      throw new Error('error on sign up user')
+    }
+
+    return
+  }
+
+  signOut = async (): Promise<void> => {
+    await supabase.auth.signOut()
+  }
+
+  sendResetPasswordEmail: (email: string) => Promise<void>
+}

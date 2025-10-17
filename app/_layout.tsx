@@ -8,7 +8,7 @@ import { StatusBar } from 'expo-status-bar'
 import { AuthProvider } from '@/src/domain/auth/AuthContext'
 import { ConsoleFeedback } from '@/src/infra/feedbackService/adapters/console/ConsoleFeedback'
 import { FeedbackProvider } from '@/src/infra/feedbackService/FeedbackProvider'
-import { InMemoryRepository } from '@/src/infra/repositories/adapters/inMemory'
+import { SupabaseRepository } from '@/src/infra/repositories/adapters/supabase'
 import { RepositoryProvider } from '@/src/infra/repositories/RepositoryProvider'
 import { AsyncStorage } from '@/src/infra/storage/adapters/AsyncStorage'
 import { StorageProvider } from '@/src/infra/storage/StorageContext'
@@ -52,7 +52,7 @@ export default function RootLayout() {
     <StorageProvider storage={AsyncStorage}>
       <AuthProvider>
         <FeedbackProvider value={ConsoleFeedback}>
-          <RepositoryProvider value={InMemoryRepository}>
+          <RepositoryProvider value={SupabaseRepository}>
             <ThemeProvider theme={theme}>
               <Stack
                 screenOptions={{
