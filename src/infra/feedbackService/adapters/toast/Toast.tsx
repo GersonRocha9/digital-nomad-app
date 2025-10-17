@@ -17,7 +17,7 @@ const toastColors: Record<
 }
 
 function CustomToast({ type, description, message }: Feedback) {
-  const { backgroundColor, textColor } = toastColors[type]
+  const { backgroundColor, textColor } = toastColors[type ?? 'success']
 
   return (
     <Box
