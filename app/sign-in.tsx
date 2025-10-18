@@ -30,6 +30,7 @@ export default function SignInScreen() {
         </Text>
 
         <TextInput
+          testID="email-input"
           label="E-mail"
           value={email}
           onChangeText={setEmail}
@@ -38,6 +39,7 @@ export default function SignInScreen() {
         />
 
         <TextInput
+          testID="password-input"
           label="Senha"
           value={password}
           onChangeText={setPassword}
@@ -46,13 +48,13 @@ export default function SignInScreen() {
           secureTextEntry
         />
 
-        <Link href="/reset-password" asChild>
+        <Link testID="forgot-password-button" href="/reset-password" asChild>
           <Text mb="s16" alignSelf="flex-end" variant="text14" color="primary">
             Esqueceu sua senha
           </Text>
         </Link>
 
-        <Button title="Entrar" onPress={handleSignIn} />
+        <Button testID="sign-in-button" title="Entrar" onPress={handleSignIn} />
 
         <TextLink
           text="Ainda não tem uma conta?"
