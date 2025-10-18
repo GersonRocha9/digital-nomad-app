@@ -12,6 +12,7 @@ import { useCityFindAll } from '@/src/domain/city/operations/useCityFindAll'
 import { Box } from '@/src/ui/components/box'
 import { CityCard } from '@/src/ui/components/city-card'
 import { Screen } from '@/src/ui/components/screen'
+import { Text } from '@/src/ui/components/text'
 import { useAppTheme } from '@/src/ui/components/theme/useAppTheme'
 import { CityFilter } from '@/src/ui/containers/city-filter'
 import { useDebounce } from '@/src/utils/hooks/useDebounce'
@@ -26,7 +27,11 @@ export default function HomeScreen() {
     null,
   )
 
-  const { data: cities } = useCityFindAll({
+  const {
+    data: cities,
+    error,
+    isLoading,
+  } = useCityFindAll({
     name: debouncedCityName,
     categoryId: selectedCategoryId,
   })
@@ -40,6 +45,24 @@ export default function HomeScreen() {
     return (
       <Box paddingHorizontal="padding">
         <CityCard cityPreview={item} />
+      </Box>
+    )
+  }
+
+  function renderEmptyComponent() {
+    let Content
+
+    if (isLoading) {
+      Content = <Text>carregando cidades...</Text>
+    } else if (error) {
+      Content = <Text>erro ao carregar cidades. {error.message}</Text>
+    } else {
+      Content = <Text>não há cidades no momento</Text>
+    }
+
+    return (
+      <Box alignSelf="center" mt="s32">
+        {Content}
       </Box>
     )
   }
@@ -58,6 +81,7 @@ export default function HomeScreen() {
         }}
         ref={flatListRef}
         itemLayoutAnimation={FadingTransition.duration(500)}
+        ListEmptyComponent={renderEmptyComponent()}
         ListHeaderComponent={
           <CityFilter
             categories={categories}

@@ -2,6 +2,8 @@ import React, { type PropsWithChildren } from 'react'
 
 import { ThemeProvider } from '@shopify/restyle'
 import { renderRouter } from 'expo-router/testing-library'
+import cloneDeep from 'lodash.clonedeep'
+import merge from 'lodash.merge'
 
 import HomeScreen from '@/app/(protected)/(tabs)'
 import TabLayout from '@/app/(protected)/(tabs)/_layout'
@@ -25,6 +27,11 @@ import theme from '../ui/components/theme/theme'
 import { AppStack } from '../ui/navigation/app-stack'
 
 import type { AuthUser } from '../domain/auth/AuthUser'
+import type { Repositories } from '../domain/Repositories'
+
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
+}
 
 function MockedAuthProvider({ children }: PropsWithChildren) {
   const authUser: AuthUser = {
@@ -47,7 +54,15 @@ function MockedAuthProvider({ children }: PropsWithChildren) {
   )
 }
 
-export const renderApp = (options?: { isAuthenticated: boolean }) => {
+export const renderApp = (options?: {
+  isAuthenticated?: boolean
+  repositories?: DeepPartial<Repositories>
+}) => {
+  const finalRepository: Repositories = merge(
+    cloneDeep(InMemoryRepository),
+    options?.repositories ?? {},
+  )
+
   const FinalAuthProvider = options?.isAuthenticated
     ? MockedAuthProvider
     : AuthProvider
@@ -57,7 +72,7 @@ export const renderApp = (options?: { isAuthenticated: boolean }) => {
       <StorageProvider storage={inMemoryStorage}>
         <FinalAuthProvider>
           <FeedbackProvider value={ToastFeedback}>
-            <RepositoryProvider value={InMemoryRepository}>
+            <RepositoryProvider value={finalRepository}>
               <ThemeProvider theme={theme}>
                 {children}
                 <Toast />
