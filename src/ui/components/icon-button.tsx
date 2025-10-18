@@ -7,13 +7,14 @@ import { useAppTheme } from './theme/useAppTheme'
 interface IIconButtonProps {
   iconName: IconName
   onPress: PressableProps['onPress']
+  testID?: string
 }
 
-export function IconButton({ iconName, onPress }: IIconButtonProps) {
+export function IconButton({ iconName, onPress, testID }: IIconButtonProps) {
   const { boxShadows } = useAppTheme()
 
   return (
-    <Pressable onPress={onPress} testID={iconName}>
+    <Pressable onPress={onPress} testID={testID ?? iconName}>
       <Box
         backgroundColor="primary"
         width={50}

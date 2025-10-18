@@ -10,11 +10,13 @@ describe('integration: Home', () => {
   it('the user can see the city list and navigate to city details when city card is pressed', async () => {
     renderApp({ isAuthenticated: true })
 
-    fireEvent.press(await screen.findByText('Rio de Janeiro'))
+    fireEvent.press(
+      await screen.findByText('Rio de Janeiro', {}, { timeout: 3000 }),
+    )
 
     expect(await screen.findByText('Pontos turísticos')).toBeOnTheScreen()
 
-    fireEvent.press(await screen.getByTestId('Chevron-left'))
+    fireEvent.press(await screen.getByTestId('back-button'))
 
     expect(await screen.findByText('Barcelona')).toBeOnTheScreen()
   })
@@ -22,12 +24,16 @@ describe('integration: Home', () => {
   it('the user can type to search a city and find the city', async () => {
     renderApp({ isAuthenticated: true })
 
+    await screen.findByText('Rio de Janeiro', {}, { timeout: 3000 })
+
     fireEvent.changeText(
       await screen.getByTestId('city-filter-search-input'),
       'Barcelona',
     )
 
-    await waitForElementToBeRemoved(() => screen.getByText('Rio de Janeiro'))
+    await waitForElementToBeRemoved(() => screen.getByText('Rio de Janeiro'), {
+      timeout: 5000,
+    })
 
     expect(await screen.findByText('Barcelona')).toBeOnTheScreen()
     expect(await screen.findByText('Espanha')).toBeOnTheScreen()

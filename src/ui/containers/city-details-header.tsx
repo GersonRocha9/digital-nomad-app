@@ -45,7 +45,11 @@ export function CityDetailsHeader({
             paddingTop: top,
           }}
         >
-          <IconButton iconName="Chevron-left" onPress={router.back} />
+          <IconButton
+            iconName="Chevron-left"
+            onPress={router.back}
+            testID="back-button"
+          />
           <Icon name="Favorite-outline" size={30} color="pureWhite" />
         </Box>
       </ImageBackground>

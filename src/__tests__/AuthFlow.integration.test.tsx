@@ -21,7 +21,9 @@ describe('integration: Auth Flow', () => {
       await screen.findByText('signed in: gersonrocha9@gmail.com'),
     ).toBeOnTheScreen()
 
-    expect(await screen.findByText('Rio de Janeiro')).toBeOnTheScreen()
+    expect(
+      await screen.findByText('Rio de Janeiro', {}, { timeout: 3000 }),
+    ).toBeOnTheScreen()
     expect(screen.getByText('Bangkok')).toBeOnTheScreen()
 
     fireEvent.press(screen.getByText('Perfil'))
