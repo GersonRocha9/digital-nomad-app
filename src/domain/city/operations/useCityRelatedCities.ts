@@ -4,5 +4,8 @@ import { useRepository } from '@/src/infra/repositories/RepositoryProvider'
 export function useCityRelatedCities(cityId: string) {
   const { city } = useRepository()
 
-  return useAppQuery(() => city.getRelatedCities(cityId))
+  return useAppQuery({
+    queryKey: ['city', 'related', cityId],
+    fetchData: () => city.getRelatedCities(cityId),
+  })
 }
