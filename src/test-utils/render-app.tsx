@@ -1,6 +1,7 @@
 import React, { type PropsWithChildren } from 'react'
 
 import { ThemeProvider } from '@shopify/restyle'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { renderRouter } from 'expo-router/testing-library'
 import cloneDeep from 'lodash.clonedeep'
 import merge from 'lodash.merge'
@@ -25,6 +26,8 @@ import { inMemoryStorage } from '../infra/storage/adapters/inMemoryStorage'
 import { StorageProvider } from '../infra/storage/StorageContext'
 import theme from '../ui/components/theme/theme'
 import { AppStack } from '../ui/navigation/app-stack'
+
+import { queryClientOptions } from './query-client-options'
 
 import type { AuthUser } from '../domain/auth/AuthUser'
 import type { Repositories } from '../domain/Repositories'
@@ -67,20 +70,24 @@ export const renderApp = (options?: {
     ? MockedAuthProvider
     : AuthProvider
 
+  const queryClient = new QueryClient(queryClientOptions)
+
   function Wrapper({ children }: React.PropsWithChildren) {
     return (
-      <StorageProvider storage={inMemoryStorage}>
-        <FinalAuthProvider>
-          <FeedbackProvider value={ToastFeedback}>
-            <RepositoryProvider value={finalRepository}>
-              <ThemeProvider theme={theme}>
-                {children}
-                <Toast />
-              </ThemeProvider>
-            </RepositoryProvider>
-          </FeedbackProvider>
-        </FinalAuthProvider>
-      </StorageProvider>
+      <QueryClientProvider client={queryClient}>
+        <StorageProvider storage={inMemoryStorage}>
+          <FinalAuthProvider>
+            <FeedbackProvider value={ToastFeedback}>
+              <RepositoryProvider value={finalRepository}>
+                <ThemeProvider theme={theme}>
+                  {children}
+                  <Toast />
+                </ThemeProvider>
+              </RepositoryProvider>
+            </FeedbackProvider>
+          </FinalAuthProvider>
+        </StorageProvider>
+      </QueryClientProvider>
     )
   }
 

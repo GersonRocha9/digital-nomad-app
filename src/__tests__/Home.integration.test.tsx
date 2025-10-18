@@ -35,7 +35,9 @@ describe('integration: Home', () => {
       timeout: 5000,
     })
 
-    expect(await screen.findByText('Barcelona')).toBeOnTheScreen()
+    expect(
+      await screen.findByText('Barcelona', {}, { timeout: 4000 }),
+    ).toBeOnTheScreen()
     expect(await screen.findByText('Espanha')).toBeOnTheScreen()
   })
 
