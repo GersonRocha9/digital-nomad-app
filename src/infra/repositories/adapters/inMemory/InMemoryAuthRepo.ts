@@ -11,7 +11,7 @@ export class InMemoryAuthUserRepo implements IAuthRepo {
       return user
     }
 
-    throw new Error('User not found')
+    throw new Error('Usuário não encontrado')
   }
 
   async signOut(): Promise<void> {}

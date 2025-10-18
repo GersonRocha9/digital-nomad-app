@@ -8,13 +8,14 @@ import { useAppTheme } from './theme/useAppTheme'
 
 type SearchInputProps = {} & Pick<
   TextInputProps,
-  'value' | 'onChangeText' | 'placeholder'
+  'value' | 'onChangeText' | 'placeholder' | 'testID'
 >
 
 export function SearchInput({
   value,
   onChangeText,
   placeholder,
+  testID,
 }: SearchInputProps) {
   const { colors, textVariants } = useAppTheme()
   const [isFocused, setIsFocused] = useState(false)
@@ -31,6 +32,7 @@ export function SearchInput({
       style={{ borderColor: isFocused ? colors.primary : colors.gray1 }}
     >
       <TextInput
+        testID={testID}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}

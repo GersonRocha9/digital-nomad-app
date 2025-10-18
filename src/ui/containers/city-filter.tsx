@@ -25,6 +25,7 @@ export function CityFilter({
     <Box>
       <Box paddingHorizontal="padding">
         <SearchInput
+          testID="city-filter-search-input"
           value={cityName}
           onChangeText={onChangeCityName}
           placeholder="Qual seu próximo destino?"

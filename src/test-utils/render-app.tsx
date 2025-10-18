@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type PropsWithChildren } from 'react'
 
 import { ThemeProvider } from '@shopify/restyle'
 import { renderRouter } from 'expo-router/testing-library'
@@ -13,7 +13,7 @@ import ResetPasswordScreen from '@/app/reset-password'
 import SignInScreen from '@/app/sign-in'
 import SignUpScreen from '@/app/sign-up'
 
-import { AuthProvider } from '../domain/auth/AuthContext'
+import { AuthContext, AuthProvider } from '../domain/auth/AuthContext'
 import { Toast } from '../infra/feedbackService/adapters/toast/Toast'
 import { ToastFeedback } from '../infra/feedbackService/adapters/toast/ToastFeedback'
 import { FeedbackProvider } from '../infra/feedbackService/FeedbackProvider'
@@ -24,11 +24,38 @@ import { StorageProvider } from '../infra/storage/StorageContext'
 import theme from '../ui/components/theme/theme'
 import { AppStack } from '../ui/navigation/app-stack'
 
-export const renderApp = () => {
+import type { AuthUser } from '../domain/auth/AuthUser'
+
+function MockedAuthProvider({ children }: PropsWithChildren) {
+  const authUser: AuthUser = {
+    id: '1',
+    email: 'gersonrocha9@gmail.com',
+    fullname: 'Gerson Rocha',
+  }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        isReady: true,
+        authUser,
+        saveAuthUser: async () => {},
+        removeAuthUser: async () => {},
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  )
+}
+
+export const renderApp = (options?: { isAuthenticated: boolean }) => {
+  const FinalAuthProvider = options?.isAuthenticated
+    ? MockedAuthProvider
+    : AuthProvider
+
   function Wrapper({ children }: React.PropsWithChildren) {
     return (
       <StorageProvider storage={inMemoryStorage}>
-        <AuthProvider>
+        <FinalAuthProvider>
           <FeedbackProvider value={ToastFeedback}>
             <RepositoryProvider value={InMemoryRepository}>
               <ThemeProvider theme={theme}>
@@ -37,7 +64,7 @@ export const renderApp = () => {
               </ThemeProvider>
             </RepositoryProvider>
           </FeedbackProvider>
-        </AuthProvider>
+        </FinalAuthProvider>
       </StorageProvider>
     )
   }
