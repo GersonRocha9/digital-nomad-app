@@ -6,6 +6,6 @@ export function useCityRelatedCities(cityId: string) {
 
   return useAppQuery({
     queryKey: ['city', 'related', cityId],
-    fetchData: () => city.getRelatedCities(cityId),
+    queryFn: () => city.getRelatedCities(cityId),
   })
 }

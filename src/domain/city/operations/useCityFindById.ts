@@ -6,6 +6,6 @@ export function useCityFindById(cityId: string) {
 
   return useAppQuery({
     queryKey: ['city', cityId],
-    fetchData: () => city.findById(cityId),
+    queryFn: () => city.findById(cityId),
   })
 }

@@ -10,16 +10,16 @@ interface IUseAppQueryReturn<DataT> {
 
 interface UseAppQueryParams<DataT> {
   queryKey: QueryKey
-  fetchData: () => Promise<DataT>
+  queryFn: () => Promise<DataT>
 }
 
 export function useAppQuery<DataT>({
   queryKey,
-  fetchData,
+  queryFn,
 }: UseAppQueryParams<DataT>): IUseAppQueryReturn<DataT> {
   const { data, isLoading, error, isPending, isFetching } = useQuery({
     queryKey,
-    queryFn: fetchData,
+    queryFn,
   })
 
   return {

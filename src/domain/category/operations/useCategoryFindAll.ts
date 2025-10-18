@@ -6,6 +6,6 @@ export function useCategoryFindAll() {
 
   return useAppQuery({
     queryKey: ['category'],
-    fetchData: () => category.findAll(),
+    queryFn: () => category.findAll(),
   })
 }

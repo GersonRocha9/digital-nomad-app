@@ -8,6 +8,6 @@ export function useCityFindAll(filters: CityFindAllFilters) {
 
   return useAppQuery({
     queryKey: ['city', filters.name, filters.categoryId],
-    fetchData: () => city.findAll(filters),
+    queryFn: () => city.findAll(filters),
   })
 }
