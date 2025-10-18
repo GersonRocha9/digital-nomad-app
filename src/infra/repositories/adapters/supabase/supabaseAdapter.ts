@@ -7,6 +7,7 @@ import type {
 } from '@/src/domain/city/City'
 
 import type { AuthUser as SupabaseAuthUser } from '@supabase/supabase-js'
+// eslint-disable-next-line import/order
 import type { Database } from './types'
 
 export const storageURL = process.env.EXPO_PUBLIC_SUPABASE_STORAGE_URL
@@ -71,6 +72,7 @@ function toAuthUser(supabaseUser: SupabaseAuthUser): AuthUser {
     id: supabaseUser.id,
     email: supabaseUser.email,
     fullname: supabaseUser.user_metadata.fullname,
+    createdAt: supabaseUser.created_at,
   }
 }
 
