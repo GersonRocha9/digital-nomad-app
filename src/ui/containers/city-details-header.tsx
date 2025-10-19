@@ -12,11 +12,15 @@ import { Icon } from '../components/icon'
 import { IconButton } from '../components/icon-button'
 import { PILL_HEIGHT } from '../components/pill'
 
-type CityDetailsProps = Pick<City, 'id' | 'categories' | 'coverImage'>
+type CityDetailsProps = Pick<
+  City,
+  'id' | 'categories' | 'coverImage' | 'isFavorite'
+>
 
 export function CityDetailsHeader({
   categories,
   coverImage,
+  isFavorite,
 }: CityDetailsProps) {
   const { top } = useSafeAreaInsets()
 
@@ -50,7 +54,12 @@ export function CityDetailsHeader({
             onPress={router.back}
             testID="back-button"
           />
-          <Icon name="Favorite-outline" size={30} color="pureWhite" />
+
+          <Icon
+            size={30}
+            name={isFavorite ? 'Favorite-fill' : 'Favorite-outline'}
+            color={isFavorite ? 'primary' : 'text'}
+          />
         </Box>
       </ImageBackground>
 

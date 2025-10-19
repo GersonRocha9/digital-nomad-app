@@ -13,7 +13,11 @@ import type { Database } from './types'
 export const storageURL = process.env.EXPO_PUBLIC_SUPABASE_STORAGE_URL
 
 type CityWithFullInfo =
-  Database['public']['Views']['cities_with_full_info']['Row']
+  Database['public']['Views']['cities_with_full_info']['Row'] & {
+    favorite_cities: {
+      user_id: string
+    }[]
+  }
 
 type CategoryRow = Database['public']['Tables']['categories']['Row']
 type TouristAttractionRow =
@@ -24,6 +28,9 @@ interface CityPreviewRow {
   name: string | null
   country: string | null
   cover_image: string | null
+  favorite_cities?: {
+    user_id: string
+  }[]
 }
 
 function toCity(data: CityWithFullInfo): City {
@@ -42,6 +49,7 @@ function toCity(data: CityWithFullInfo): City {
     },
     categories: categories.map(toCategory),
     touristAttractions: tourist_attractions.map(toTouristAttractions),
+    isFavorite: data.favorite_cities.length > 0,
   }
 }
 
@@ -76,13 +84,17 @@ function toAuthUser(supabaseUser: SupabaseAuthUser): AuthUser {
   }
 }
 
-function toCityPreview(row: CityPreviewRow): CityPreview {
+function toCityPreview(row: CityPreviewRow, isFavorite?: boolean): CityPreview {
   return {
-    id: row.id,
-    country: row.country,
-    name: row.name,
-    coverImage: `${storageURL}/${row.cover_image}`,
-  } as CityPreview
+    id: row.id as string,
+    country: row.country as string,
+    name: row.name as string,
+    coverImage: `${storageURL}/${row.cover_image}` as string,
+    isFavorite:
+      isFavorite ??
+      (row.favorite_cities && row.favorite_cities?.length > 0) ??
+      false,
+  }
 }
 
 export const supabaseAdapter = {
