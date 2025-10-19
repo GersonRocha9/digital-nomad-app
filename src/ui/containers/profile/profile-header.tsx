@@ -52,7 +52,9 @@ export function ProfileHeader({ authUser }: ProfileHeaderProps) {
           <Button
             title="Alterar senha"
             variant="secondary"
-            onPress={() => {}}
+            onPress={() => {
+              router.navigate('/update-password')
+            }}
           />
         </Box>
       </Box>
