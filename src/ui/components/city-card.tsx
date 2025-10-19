@@ -1,8 +1,4 @@
-import {
-  ImageBackground,
-  Pressable,
-  type ImageBackgroundProps,
-} from 'react-native'
+import { ImageBackground, Pressable, useWindowDimensions } from 'react-native'
 
 import { Link } from 'expo-router'
 
@@ -16,11 +12,23 @@ import { useAppTheme } from './theme/useAppTheme'
 
 interface ICityCardProps {
   cityPreview: CityPreview
-  style?: ImageBackgroundProps['style']
+  type?: 'small' | 'large'
+  disableFavorite?: boolean
 }
 
-export function CityCard({ cityPreview, style }: ICityCardProps) {
+export function CityCard({
+  cityPreview,
+  type = 'large',
+  disableFavorite = false,
+}: ICityCardProps) {
   const { borderRadii } = useAppTheme()
+  const { width } = useWindowDimensions()
+
+  const cardWidth = width * 0.7
+  const cardHeight = cardWidth * 0.9
+
+  const style =
+    type === 'small' ? { width: cardWidth, height: cardHeight } : undefined
 
   return (
     <Link href={`/city-details/${cityPreview.id}`} push asChild>
@@ -38,7 +46,7 @@ export function CityCard({ cityPreview, style }: ICityCardProps) {
 
           <Box flex={1} padding="s24" justifyContent="space-between">
             <Box alignSelf="flex-end">
-              <CityFavoriteButton city={cityPreview} />
+              {!disableFavorite && <CityFavoriteButton city={cityPreview} />}
             </Box>
 
             <Box>

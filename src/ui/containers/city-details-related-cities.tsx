@@ -1,4 +1,4 @@
-import { ScrollView, useWindowDimensions } from 'react-native'
+import { ScrollView } from 'react-native'
 
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -16,10 +16,6 @@ export function CityDetailsRelatedCities({ id }: Props) {
   const { data: cities } = useCityRelatedCities(id)
   const { spacing } = useAppTheme()
   const { bottom } = useSafeAreaInsets()
-  const { width } = useWindowDimensions()
-
-  const cardWidth = width * 0.7
-  const cardHeight = cardWidth * 0.9
 
   return (
     <Box style={{ paddingBottom: bottom }}>
@@ -36,11 +32,7 @@ export function CityDetailsRelatedCities({ id }: Props) {
         }}
       >
         {cities?.map((city) => (
-          <CityCard
-            key={city.id}
-            cityPreview={city}
-            style={{ width: cardWidth, height: cardHeight }}
-          />
+          <CityCard key={city.id} cityPreview={city} type="small" />
         ))}
       </ScrollView>
     </Box>
