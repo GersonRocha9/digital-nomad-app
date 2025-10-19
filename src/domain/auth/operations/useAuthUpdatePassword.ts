@@ -21,7 +21,6 @@ export function useAuthUpdatePassword(options?: UseAppMutationOptions<void>) {
       })
     },
     onError: (error) => {
-      console.log({ error })
       options?.onError?.(error)
       feedbackService.send({
         type: 'error',
