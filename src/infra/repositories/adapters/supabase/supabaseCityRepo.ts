@@ -1,4 +1,8 @@
 import type { City, CityPreview } from '@/src/domain/city/City'
+import type {
+  CityToggleFavoriteParams,
+  ICityRepo,
+} from '@/src/domain/city/ICityRepo'
 
 import { supabase } from './supabase'
 import { storageURL, supabaseAdapter } from './supabaseAdapter'
@@ -69,8 +73,29 @@ async function getRelatedCities(cityId: string): Promise<CityPreview[]> {
   return data.map(supabaseAdapter.toCityPreview)
 }
 
-export const supabaseCityRepo = {
+async function toggleFavorite(params: CityToggleFavoriteParams): Promise<void> {
+  const { data, error } = await supabase.auth.getSession()
+
+  if (error || !data.session) {
+    throw new Error('invalid session')
+  }
+
+  if (params.isFavorite) {
+    await supabase
+      .from('favorite_cities')
+      .delete()
+      .eq('user_id', data.session?.user.id)
+      .eq('city_id', params.cityId)
+  } else {
+    await supabase
+      .from('favorite_cities')
+      .insert({ city_id: params.cityId, user_id: data.session.user.id })
+  }
+}
+
+export const supabaseCityRepo: ICityRepo = {
   findAll,
   findById,
   getRelatedCities,
+  toggleFavorite,
 }

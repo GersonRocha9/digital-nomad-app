@@ -7,9 +7,10 @@ import {
 import { Link } from 'expo-router'
 
 import type { CityPreview } from '@/src/domain/city/City'
+import { useCityToggleFavorite } from '@/src/domain/city/operations/useCityToggleFavorite'
 
 import { BlackOpacity } from './black-opacity'
-import { Box } from './box'
+import { Box, TouchableOpacityBox } from './box'
 import { Icon } from './icon'
 import { Text } from './text'
 import { useAppTheme } from './theme/useAppTheme'
@@ -21,6 +22,7 @@ interface ICityCardProps {
 
 export function CityCard({ cityPreview, style }: ICityCardProps) {
   const { borderRadii } = useAppTheme()
+  const { mutate: toggleFavorite } = useCityToggleFavorite()
 
   return (
     <Link href={`/city-details/${cityPreview.id}`} push asChild>
@@ -37,9 +39,14 @@ export function CityCard({ cityPreview, style }: ICityCardProps) {
           <BlackOpacity />
 
           <Box flex={1} padding="s24" justifyContent="space-between">
-            <Box alignSelf="flex-end">
+            <TouchableOpacityBox
+              alignSelf="flex-end"
+              onPress={() =>
+                toggleFavorite({ cityId: cityPreview.id, isFavorite: false })
+              }
+            >
               <Icon name="Favorite-outline" color="text" />
-            </Box>
+            </TouchableOpacityBox>
 
             <Box>
               <Text variant="title22">{cityPreview.name}</Text>
