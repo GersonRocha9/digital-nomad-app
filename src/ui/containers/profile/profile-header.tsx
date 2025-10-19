@@ -1,3 +1,5 @@
+import { router } from 'expo-router'
+
 import type { AuthUser } from '@/src/domain/auth/AuthUser'
 import { dateUtils } from '@/src/utils/dateUtils'
 
@@ -31,7 +33,19 @@ export function ProfileHeader({ authUser }: ProfileHeaderProps) {
 
       <Box flexDirection="row" columnGap="s16" mt="s16">
         <Box flex={1}>
-          <Button title="Editar" variant="secondary" onPress={() => {}} />
+          <Button
+            title="Editar perfil"
+            variant="secondary"
+            onPress={() => {
+              router.navigate({
+                pathname: '/update-profile',
+                params: {
+                  fullname: authUser.fullname,
+                  email: authUser.email,
+                },
+              })
+            }}
+          />
         </Box>
 
         <Box flex={1}>
