@@ -40,4 +40,6 @@ app-example
 
 .env
 
-coverage
+/coverage
+/android
+/ios
