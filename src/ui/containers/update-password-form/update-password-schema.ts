@@ -12,7 +12,7 @@ export const updatePasswordSchema = z
       .string({ error: 'campo obrigatório' })
       .min(6, 'no mínimo 6 caracteres'),
   })
-  .refine((data) => data.password === data.confirmNewPassword, {
+  .refine((data) => data.newPassword === data.confirmNewPassword, {
     error: 'senhas devem ser iguais',
     path: ['confirmNewPassword'],
   })

@@ -1,5 +1,10 @@
 import type { AuthUser } from '@/src/domain/auth/AuthUser'
-import type { AuthSignUpParams, IAuthRepo } from '@/src/domain/auth/IAuthRepo'
+import type {
+  AuthSignUpParams,
+  AuthUpdatePasswordParams,
+  AuthUpdateProfileParams,
+  IAuthRepo,
+} from '@/src/domain/auth/IAuthRepo'
 
 import { authUsers } from './data/authUsers'
 
@@ -34,5 +39,13 @@ export class InMemoryAuthUserRepo implements IAuthRepo {
 
   getUser = async (): Promise<AuthUser> => {
     return authUsers[0]
+  }
+
+  updateProfile = async (params: AuthUpdateProfileParams): Promise<void> => {
+    console.log({ params })
+  }
+
+  updatePassword = async (params: AuthUpdatePasswordParams): Promise<void> => {
+    console.log({ params })
   }
 }

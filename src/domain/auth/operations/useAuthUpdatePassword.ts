@@ -1,5 +1,3 @@
-import { useQueryClient } from '@tanstack/react-query'
-
 import { useFeedbackService } from '@/src/infra/feedbackService/FeedbackProvider'
 import {
   useAppMutation,
@@ -7,29 +5,27 @@ import {
 } from '@/src/infra/operations/useAppMutation'
 import { useRepository } from '@/src/infra/repositories/RepositoryProvider'
 
-import type { AuthUpdateProfileParams } from '../IAuthRepo'
+import type { AuthUpdatePasswordParams } from '../IAuthRepo'
 
-export function useAuthUpdateProfile(options?: UseAppMutationOptions<void>) {
+export function useAuthUpdatePassword(options?: UseAppMutationOptions<void>) {
   const { auth } = useRepository()
   const feedbackService = useFeedbackService()
 
-  const queryClient = useQueryClient()
-
-  return useAppMutation<void, AuthUpdateProfileParams>({
-    mutationFn: (params) => auth.updateProfile(params),
+  return useAppMutation<void, AuthUpdatePasswordParams>({
+    mutationFn: (params) => auth.updatePassword(params),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['user'] })
       options?.onSuccess?.()
       feedbackService.send({
         type: 'success',
-        message: `perfil atualizado com sucesso`,
+        message: `senha atualizada com sucesso`,
       })
     },
     onError: (error) => {
+      console.log({ error })
       options?.onError?.(error)
       feedbackService.send({
         type: 'error',
-        message: 'error on update password',
+        message: 'error ao atualizar senha',
       })
     },
   })
