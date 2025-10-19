@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Header } from '@/src/ui/components/header'
 import { Screen } from '@/src/ui/components/screen'
 import { Text } from '@/src/ui/components/text'
-import { UpdateProfileForm } from '@/src/ui/containers/update-form/update-form'
+import { UpdateProfileForm } from '@/src/ui/containers/update-profile-form/update-profile-form'
 
 export default function UpdateProfileScreen() {
   const { fullname, email } = useLocalSearchParams<{
