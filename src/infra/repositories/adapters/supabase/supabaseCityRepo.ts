@@ -5,6 +5,7 @@ import type {
 } from '@/src/domain/city/ICityRepo'
 
 import { supabase } from './supabase'
+import { supabaseHelpers } from './supabase-helpers'
 import { storageURL, supabaseAdapter } from './supabaseAdapter'
 
 export interface CityFilters {
@@ -74,23 +75,30 @@ async function getRelatedCities(cityId: string): Promise<CityPreview[]> {
 }
 
 async function toggleFavorite(params: CityToggleFavoriteParams): Promise<void> {
-  const { data, error } = await supabase.auth.getSession()
-
-  if (error || !data.session) {
-    throw new Error('invalid session')
-  }
+  const user = await supabaseHelpers.getUserSession()
 
   if (params.isFavorite) {
     await supabase
       .from('favorite_cities')
       .delete()
-      .eq('user_id', data.session?.user.id)
+      .eq('user_id', user.id)
       .eq('city_id', params.cityId)
   } else {
     await supabase
       .from('favorite_cities')
-      .insert({ city_id: params.cityId, user_id: data.session.user.id })
+      .insert({ city_id: params.cityId, user_id: user.id })
   }
+}
+
+async function findAllFavorites(): Promise<CityPreview[]> {
+  const user = await supabaseHelpers.getUserSession()
+  const { data } = await supabase
+    .from('favorite_cities')
+    .select(`city_id, cities (id, name, country, cover_image)`)
+    .eq('user_id', user.id)
+    .throwOnError()
+
+  return data.map((item) => supabaseAdapter.toCityPreview(item.cities))
 }
 
 export const supabaseCityRepo: ICityRepo = {
@@ -98,4 +106,5 @@ export const supabaseCityRepo: ICityRepo = {
   findById,
   getRelatedCities,
   toggleFavorite,
+  findAllFavorites,
 }
