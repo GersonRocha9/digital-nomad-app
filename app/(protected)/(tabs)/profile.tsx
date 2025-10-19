@@ -1,4 +1,4 @@
-import { FlatList, Pressable } from 'react-native'
+import { Pressable } from 'react-native'
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -6,6 +6,7 @@ import { useAuthGetUser } from '@/src/domain/auth/operations/useAuthGetUser'
 import { useAuthSignOut } from '@/src/domain/auth/operations/useAuthSignOut'
 import { useCityFindAllFavorites } from '@/src/domain/city/operations/useCityFindAllFavorites'
 import { Box } from '@/src/ui/components/box'
+import { FavoriteCityCard } from '@/src/ui/components/favorite-city-card'
 import { Icon } from '@/src/ui/components/icon'
 import { Screen } from '@/src/ui/components/screen'
 import { Text } from '@/src/ui/components/text'
@@ -21,10 +22,11 @@ export default function ProfileScreen() {
       <SafeAreaView>
         {authUser && <ProfileHeader authUser={authUser} />}
 
-        <FlatList
-          data={favoritesCities}
-          renderItem={(cityPreview) => <Text>{cityPreview.item.name}</Text>}
-        />
+        <Box rowGap="s16" mt="s16">
+          {favoritesCities?.map((cityPreview) => (
+            <FavoriteCityCard key={cityPreview.id} cityPreview={cityPreview} />
+          ))}
+        </Box>
 
         <Pressable testID="sign-out-button" onPress={signOut}>
           <Box
