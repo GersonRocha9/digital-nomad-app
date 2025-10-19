@@ -12,6 +12,8 @@ import ExploreScreen from '@/app/(protected)/(tabs)/explore'
 import ProfileScreen from '@/app/(protected)/(tabs)/profile'
 import ProtectedLayout from '@/app/(protected)/_layout'
 import CityDetailsScreen from '@/app/(protected)/city-details/[id]'
+import UpdatePasswordScreen from '@/app/(protected)/update-password'
+import UpdateProfileScreen from '@/app/(protected)/update-profile'
 import ResetPasswordScreen from '@/app/reset-password'
 import SignInScreen from '@/app/sign-in'
 import SignUpScreen from '@/app/sign-up'
@@ -41,6 +43,7 @@ function MockedAuthProvider({ children }: PropsWithChildren) {
     id: '1',
     email: 'gersonrocha9@gmail.com',
     fullname: 'Gerson Rocha',
+    createdAt: '2025-06-23T10:32:55.10671Z',
   }
 
   return (
@@ -100,6 +103,8 @@ export const renderApp = (options?: {
       '(protected)/(tabs)/explore': () => <ExploreScreen />,
       '(protected)/(tabs)/profile': () => <ProfileScreen />,
       '(protected)/city-details/[id]': () => <CityDetailsScreen />,
+      '(protected)/update-profile': () => <UpdateProfileScreen />,
+      '(protected)/update-password': () => <UpdatePasswordScreen />,
       'sign-in': () => <SignInScreen />,
       'sign-up': () => <SignUpScreen />,
       'reset-password': () => <ResetPasswordScreen />,

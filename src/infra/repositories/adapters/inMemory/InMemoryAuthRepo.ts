@@ -42,10 +42,10 @@ export class InMemoryAuthUserRepo implements IAuthRepo {
   }
 
   updateProfile = async (params: AuthUpdateProfileParams): Promise<void> => {
-    console.log({ params })
+    return
   }
 
   updatePassword = async (params: AuthUpdatePasswordParams): Promise<void> => {
-    console.log({ params })
+    return
   }
 }
