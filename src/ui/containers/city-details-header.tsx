@@ -8,7 +8,7 @@ import type { City } from '@/src/domain/city/City'
 import { BlackOpacity } from '../components/black-opacity'
 import { Box } from '../components/box'
 import { CategoryPill } from '../components/category-pill'
-import { Icon } from '../components/icon'
+import { CityFavoriteButton } from '../components/city-favorite-button'
 import { IconButton } from '../components/icon-button'
 import { PILL_HEIGHT } from '../components/pill'
 
@@ -18,6 +18,7 @@ type CityDetailsProps = Pick<
 >
 
 export function CityDetailsHeader({
+  id,
   categories,
   coverImage,
   isFavorite,
@@ -55,11 +56,7 @@ export function CityDetailsHeader({
             testID="back-button"
           />
 
-          <Icon
-            size={30}
-            name={isFavorite ? 'Favorite-fill' : 'Favorite-outline'}
-            color={isFavorite ? 'primary' : 'text'}
-          />
+          <CityFavoriteButton size={30} city={{ id, isFavorite }} />
         </Box>
       </ImageBackground>
 

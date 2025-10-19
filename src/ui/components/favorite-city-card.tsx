@@ -3,10 +3,9 @@ import { Image, Pressable, useWindowDimensions } from 'react-native'
 import { Link } from 'expo-router'
 
 import type { CityPreview } from '@/src/domain/city/City'
-import { useCityToggleFavorite } from '@/src/domain/city/operations/useCityToggleFavorite'
 
-import { Box, TouchableOpacityBox } from './box'
-import { Icon } from './icon'
+import { Box } from './box'
+import { CityFavoriteButton } from './city-favorite-button'
 import { Text } from './text'
 import { useAppTheme } from './theme/useAppTheme'
 
@@ -16,7 +15,6 @@ interface FavoriteCityCardProps {
 
 export function FavoriteCityCard({ cityPreview }: FavoriteCityCardProps) {
   const { borderRadii } = useAppTheme()
-  const { mutate: toggleFavorite } = useCityToggleFavorite()
 
   const { width } = useWindowDimensions()
   const IMAGE_WIDTH = width * 0.3
@@ -53,14 +51,7 @@ export function FavoriteCityCard({ cityPreview }: FavoriteCityCardProps) {
           </Box>
 
           <Box>
-            <TouchableOpacityBox
-              alignSelf="flex-end"
-              onPress={() =>
-                toggleFavorite({ cityId: cityPreview.id, isFavorite: false })
-              }
-            >
-              <Icon name="Favorite-outline" color="text" />
-            </TouchableOpacityBox>
+            <CityFavoriteButton city={cityPreview} />
           </Box>
         </Box>
       </Pressable>
