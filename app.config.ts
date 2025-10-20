@@ -1,0 +1,55 @@
+import { ConfigContext, ExpoConfig } from 'expo/config'
+
+export default ({ config }: ConfigContext): ExpoConfig => ({
+  ...config,
+  name: 'Nomad',
+  slug: 'digital-nomad-app',
+  version: '1.0.0',
+  orientation: 'portrait',
+  icon: './assets/images/icon.png',
+  scheme: 'digitalnomadapp',
+  userInterfaceStyle: 'automatic',
+  newArchEnabled: true,
+  ios: {
+    supportsTablet: true,
+    bundleIdentifier: 'com.gersonrocha9.digital-nomad-app',
+    infoPlist: {
+      ITSAppUsesNonExemptEncryption: false,
+    },
+  },
+  android: {
+    adaptiveIcon: {
+      foregroundImage: './assets/images/adaptive-icon.png',
+      backgroundColor: '#1B1B1B',
+    },
+    edgeToEdgeEnabled: true,
+    package: 'com.gersonrocha9.digitalnomadapp',
+  },
+  web: {
+    bundler: 'metro',
+    output: 'static',
+    favicon: './assets/images/favicon.png',
+  },
+  plugins: [
+    'expo-router',
+    [
+      'expo-splash-screen',
+      {
+        image: './assets/images/splash-icon.png',
+        imageWidth: 200,
+        resizeMode: 'contain',
+        backgroundColor: '#1B1B1B',
+      },
+    ],
+    'expo-sqlite',
+  ],
+  experiments: {
+    typedRoutes: true,
+  },
+  extra: {
+    router: {},
+    eas: {
+      projectId: '84ea02aa-7163-4983-b90c-1c8ac5afbc04',
+    },
+  },
+})
