@@ -46,6 +46,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
       latitude: -22.9068,
       longitude: -43.1729,
     },
+    isFavorite: true,
   },
   {
     id: 'tokyo',
@@ -86,6 +87,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
       },
     ],
     relatedCitiesIds: ['bangkok', 'hong-kong', 'singapore'], // Urban, Shopping, Modern cities
+    isFavorite: false,
     location: {
       latitude: 35.6762,
       longitude: 139.6503,
@@ -136,6 +138,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
       },
     ],
     relatedCitiesIds: ['tokyo', 'hong-kong', 'singapore'], // Urban, Shopping, Modern cities
+    isFavorite: false,
     location: {
       latitude: 13.7563,
       longitude: 100.5018,
@@ -180,6 +183,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'barcelona',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 41.3851,
       longitude: 2.1734,
@@ -224,6 +228,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'new_york',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 40.7128,
       longitude: -74.006,
@@ -268,6 +273,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'krabi',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 8.0863,
       longitude: 98.9063,
@@ -313,6 +319,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'bali',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: -8.3405,
       longitude: 115.092,
@@ -357,6 +364,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'amsterdam',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 52.3676,
       longitude: 4.9041,
@@ -402,6 +410,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'cancun',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 21.1619,
       longitude: -86.8515,
@@ -447,6 +456,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'dubai',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 25.276987,
       longitude: 55.296249,
@@ -492,6 +502,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'ciudad-de-mexico',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 19.4326,
       longitude: -99.1332,
@@ -536,6 +547,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'hong-kong',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 22.3193,
       longitude: 114.1694,
@@ -580,6 +592,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'kosice',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 48.7164,
       longitude: 21.2611,
@@ -624,6 +637,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'melbourne',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: -37.8136,
       longitude: 144.9631,
@@ -669,6 +683,7 @@ export const cities: (City & { relatedCitiesIds: string[] })[] = [
         cityId: 'singapore',
       },
     ],
+    isFavorite: false,
     location: {
       latitude: 1.3521,
       longitude: 103.8198,

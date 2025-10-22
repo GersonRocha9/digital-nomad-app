@@ -33,6 +33,7 @@ describe('useAuthSignIn()', () => {
       id: '1',
       email: 'gersonrocha9@gmail.com',
       fullname: 'Gerson Rocha',
+      createdAt: '2025-06-23T10:32:55.10671Z',
     }
 
     mockSignIn.mockReturnValueOnce(user)

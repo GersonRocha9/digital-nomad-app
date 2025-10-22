@@ -15,6 +15,7 @@ import { Screen } from '@/src/ui/components/screen'
 import { Text } from '@/src/ui/components/text'
 import { useAppTheme } from '@/src/ui/components/theme/useAppTheme'
 import { CityFilter } from '@/src/ui/containers/city-filter'
+import { errorUtils } from '@/src/utils/error-utils'
 import { useDebounce } from '@/src/utils/hooks/useDebounce'
 
 export default function HomeScreen() {
@@ -55,7 +56,11 @@ export default function HomeScreen() {
     if (isLoading) {
       Content = <Text>carregando cidades...</Text>
     } else if (error) {
-      Content = <Text>erro ao carregar cidades. {error.message}</Text>
+      Content = (
+        <Text>
+          erro ao carregar cidades. {errorUtils.getErrorMessage(error)}
+        </Text>
+      )
     } else {
       Content = <Text>não há cidades no momento</Text>
     }

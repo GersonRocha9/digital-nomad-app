@@ -1,9 +1,30 @@
 import type { City, CityPreview } from '@/src/domain/city/City'
-import type { CityFindAllFilters, ICityRepo } from '@/src/domain/city/ICityRepo'
+import type {
+  CitiesGroupedByCategory,
+  CityFindAllFilters,
+  CityToggleFavoriteParams,
+  ICityRepo,
+} from '@/src/domain/city/ICityRepo'
 
 import { cities } from './data/cities'
 
 export class InMemoryCityRepo implements ICityRepo {
+  async findGroupedByCategory(): Promise<CitiesGroupedByCategory[]> {
+    return cities.map((city) => ({
+      category: city.categories[0],
+      cities: [city],
+    }))
+  }
+  async toggleFavorite(params: CityToggleFavoriteParams): Promise<void> {
+    const city = cities.find((city) => city.id === params.cityId)
+    if (city) {
+      city.isFavorite = params.isFavorite
+    }
+  }
+  async findAllFavorites(): Promise<CityPreview[]> {
+    return cities.filter((city) => city.isFavorite)
+  }
+
   async findById(id: string): Promise<City> {
     const city = cities.find((city) => city.id === id)
     if (city) {
