@@ -1,4 +1,4 @@
-name: CI - TypeScript and Testes
+name: CI - TypeScript and Tests
 
 on:
   pull_request:
